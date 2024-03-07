@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App.Views.GenralPage.SuccessOrderPage"
+             xmlns:vm="clr-namespace:App.Lang.GenralPage"
+             x:DataType="vm:SuccesssPageLang"
+             VerticalOptions="Center"
+             HorizontalOptions="Center"
+             >
+    <VerticalStackLayout Spacing="25" VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="300" HeightRequest="500">
+        <Image HorizontalOptions="Center" x:Name="img" WidthRequest="50" HeightRequest="50" Source="success_order.webp" />
+        <Label HorizontalTextAlignment="Center" x:Name="msg" Text="{Binding MsgLable}" FontSize="30" TextColor="Green" />
+        <Button Clicked="homebtn_Clicked" Text="{Binding GoToHomeBtn}" Scale="0" Opacity="0" Padding="50 , 10" x:Name="homebtn"  BackgroundColor="Green" TextColor="White" />
+    </VerticalStackLayout>
+</ContentView>

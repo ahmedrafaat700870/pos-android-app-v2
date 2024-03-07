@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mopups:PopupPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App.Views.PaymentPopup.PaymentPagePopup"
+             BackgroundColor="#80000000"
+             CloseWhenBackgroundIsClicked="False"
+             Padding="0"
+             xmlns:mopups="clr-namespace:Mopups.Pages;assembly=Mopups"
+             xmlns:vm="clr-namespace:App.ViewModel.PaymentPopup"
+             x:DataType="vm:PaymentPopupPageViewModel"
+             >
+
+    <Border HeightRequest="300" BackgroundColor="#F8F9FC" Stroke="Transparent" StrokeShape="RoundRectangle 10,10,10,10" Padding="24">
+        <VerticalStackLayout Spacing="12">
+            <Grid>
+                <Label HorizontalOptions="Start" Text="{Binding Lang.Balance}" FontSize="20" FontAttributes="Bold"  />
+                <Button BackgroundColor="Transparent" WidthRequest="150" Command="{Binding ClickBalanceCommand}" BorderColor="#C3D4E9" Padding="16,11" CornerRadius="6" BorderWidth="1" HorizontalOptions="End" TextColor="#1A202C" Text="{Binding Balance}" />
+            </Grid>
+
+            <Grid>
+                <Label HorizontalOptions="Start" Text="{Binding Lang.Remaining}" FontSize="20" FontAttributes="Bold"  />
+                <Border  WidthRequest="150" Padding="16,11"  HorizontalOptions="End" Stroke="#C3D4E9" StrokeThickness="1" StrokeShape="RoundRectangle 6,6,6,6"  >
+                    <Label HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding Remaing  ,StringFormat='${0:F2}'}" FontSize="14" FontAttributes="Bold"  TextColor="#1A202C" />
+                </Border>
+            </Grid>
+
+            <Grid>
+                <Label HorizontalOptions="Start" Text="{Binding Lang.Received}" FontSize="20" FontAttributes="Bold"  />
+                <Border  WidthRequest="150"  Padding="16,11"  HorizontalOptions="End" Stroke="#C3D4E9" StrokeThickness="1" StrokeShape="RoundRectangle 6,6,6,6"  >
+                    <Entry Keyboard="Numeric" HorizontalOptions="Start" Placeholder="" Text="{Binding Received }" FontSize="14" FontAttributes="Bold"  TextColor="#1A202C" />
+                </Border>
+            </Grid>
+
+            <HorizontalStackLayout HorizontalOptions="End" Spacing="10" Margin="10 , 0">
+                <Button WidthRequest="100" Command="{Binding ClickCancelCommand}" FontAttributes="Bold" CornerRadius="10" BackgroundColor="#F8F9FC"  BorderColor="#3366FF" TextColor="#1A202C"  Text="{Binding Lang.Cancle}"    />
+                <Button WidthRequest="100" Command="{Binding ClickAddCommand}" FontAttributes="Bold" CornerRadius="10" BackgroundColor="#3366FF"  BorderColor="#3366FF" TextColor="#FFFFFF"   Text="{Binding Lang.Add}"    />
+            </HorizontalStackLayout>
+
+        </VerticalStackLayout>
+
+    </Border>
+</mopups:PopupPage>

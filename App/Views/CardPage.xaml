@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App.Views.CardPage"
+             xmlns:helper="clr-namespace:App.Helpers"
+             xmlns:cartItem="clr-namespace:App.Views.CartItems"
+             BackgroundColor="#E0E9F4"
+             xmlns:vm="clr-namespace:App.ViewModel"
+             x:DataType="vm:CartViewModel"
+             xmlns:model="clr-namespace:App.Model"
+             >
+    <ContentView.Resources>
+
+        <x:String x:Key="smile">&#xf1f8;</x:String>
+
+        <Color x:Key="white" >#ffffff</Color>
+        <Color x:Key="backgroundButton"  >#3366ff</Color>
+        <Color x:Key="textColor1" >#1a202c</Color>
+        <Color x:Key="buttonBorder1">#C3D4E9</Color>
+        <Color x:Key="cartBarkground" >#F8F9FC</Color>
+        <Color x:Key="reomveButton">#db1f26</Color>
+
+
+        <Style x:Key="buttons" TargetType="Button">
+            <Setter Property="BackgroundColor" Value="White" />
+            <Setter Property="BorderColor" Value="{StaticResource ButtonBackGround6FF}" />
+            <Setter Property="BorderWidth" Value="1" />
+            <Setter Property="VerticalOptions" Value="Fill" />
+            <Setter Property="HorizontalOptions" Value="Fill" />
+            <Setter Property="TextColor" Value="{StaticResource  MainPlainText2C}" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="FontAttributes" Value="Bold" />
+        </Style>
+
+        <Style x:Key="mainBorder" TargetType="Border">
+            <Setter Property="Margin" Value="0 , 0 ,0, 16" />
+            <Setter Property="BackgroundColor" Value="{StaticResource cartBarkground}" />
+            <Setter Property="Stroke" Value="{StaticResource BorderF4}" />
+            <Setter Property="StrokeThickness" Value="1" />
+            <Setter Property="StrokeShape" Value="RoundRectangle 4,4,4,4" />
+
+            <Setter Property="Padding" Value="5" />
+        </Style>
+
+        <Style TargetType="Button" x:Key="cardButton">
+            <Setter Property="BorderColor" Value="{StaticResource reomveButton}" />
+            <Setter Property="BackgroundColor" Value="{StaticResource reomveButton}" />
+            <Setter Property="CornerRadius" Value="5"  />
+            <Setter Property="Padding" Value="5" />
+        </Style>
+
+
+        <Style x:Key="lableCard" TargetType="Label">
+            <Setter Property="FontSize" Value="10" />
+            <Setter Property="VerticalTextAlignment" Value="Center" />
+            <Setter Property="HorizontalTextAlignment" Value="Center" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="TextColor" Value="{StaticResource textColor1}"  />
+            <Setter Property="Opacity" Value="0.6" />
+        </Style>
+
+        <Style TargetType="Border" x:Key="cardDetaildBorder">
+            <Setter Property="BackgroundColor" Value="{StaticResource ButtonTextColorFF}" />
+            <Setter Property="StrokeThickness" Value="1" />
+            <Setter Property="Stroke" Value="#000" />
+            <Setter Property="Padding" Value="12" />
+            <Setter Property="StrokeShape" Value="RoundRectangle 5,5,5,5" />
+
+        </Style>
+        <Style TargetType="Label" x:Key="lable_total_order">
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="TextColor" Value="#1A202C" />
+            <Setter Property="FontAttributes" Value="Bold" />
+
+        </Style>
+
+
+        <Style x:Key="lable_left" TargetType="Label">
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="TextColor" Value="Black" />
+            <Setter Property="Opacity" Value="0.6" />
+            <Setter Property="HorizontalTextAlignment" Value="Start" />
+            <Setter Property="FontAttributes" Value="Bold" />
+        </Style>
+
+        <Style TargetType="Label" x:Key="lable_right">
+            <Setter Property="HorizontalTextAlignment" Value="End" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="FontAttributes" Value="Bold" />
+
+        </Style>
+
+        <Style TargetType="Label" x:Key="lable">
+            <Setter Property="FontSize" Value="10" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="TextColor" Value="#1A202C" />
+            <Setter Property="HorizontalTextAlignment" Value="Center" />
+        </Style>
+
+    </ContentView.Resources>
+        
+    <Grid BackgroundColor="#E0E9F4" RowDefinitions="*, 100" RowSpacing="10">
+
+        <Border  BackgroundColor="Transparent"  Style="{StaticResource mainBorder}" >
+            <Grid BackgroundColor="Transparent" Grid.Row="0" RowSpacing="10"  >
+                
+                <Grid.RowDefinitions>
+                    <RowDefinition  Height="50"/>
+                    <RowDefinition   Height="20"/>
+                    <RowDefinition  Height="3*"/>
+                    <RowDefinition  Height="1.5*"/>
+                </Grid.RowDefinitions>
+                
+                <Grid BackgroundColor="Transparent" ColumnSpacing="20" ColumnDefinitions="* , * , *, * , *" Grid.Row="0"  >
+                    <Button  x:Name="qty" Clicked="qty_Clicked"  Grid.Column="0" Text="{Binding Lang.QtyBtn}" TextColor="{StaticResource textColor1}" BorderWidth="2" BorderColor="{StaticResource buttonBorder1}"  CornerRadius="5" BackgroundColor="#FFFFFF"   />
+                    <Button  x:Name="price" Clicked="price_Clicked" Grid.Column="1" Text="{Binding Lang.PriceBtn}" TextColor="{StaticResource textColor1}" BorderWidth="2" BorderColor="{StaticResource buttonBorder1}"  CornerRadius="5" BackgroundColor="#FFFFFF"   />
+                    <Button  x:Name="clear" Command="{Binding clearCartCommand}" Grid.Column="2" Text="{Binding Lang.ClearBtn}" TextColor="{StaticResource textColor1}" BorderWidth="2" BorderColor="{StaticResource buttonBorder1}"  CornerRadius="5" BackgroundColor="#FFFFFF" />
+                    <Button  x:Name="discount" Clicked="discount_Clicked" Grid.Column="3" Text="{Binding Lang.DiscountBtn}" TextColor="{StaticResource textColor1}" BorderWidth="2" BorderColor="{StaticResource buttonBorder1}"  CornerRadius="5" BackgroundColor="#FFFFFF" />
+                    <Border  Grid.Column="4" HorizontalOptions="End"  StrokeShape="RoundRectangle 5,5,5,5" BackgroundColor="#DB1F26" Stroke="#DB1F26" WidthRequest="45" Margin="0 , 0 , 15 , 0" >
+                        <ImageButton WidthRequest="15"  >
+                            <ImageButton.Source>
+                                <FontImageSource FontFamily="FAS"  Glyph="{x:Static helper:FontAwosomeHelper.TrashCanArrowUp}" Color="White" />
+                            </ImageButton.Source>
+                        </ImageButton>
+                    </Border>
+                    <Button WidthRequest="45" Grid.Column="4" Margin="0 , 0 , 15 , 0" Background="Transparent" Padding="0" Text="" Command="{Binding reomveItemFromCartCommand}"  />
+                </Grid>
+
+                <FlexLayout BackgroundColor="Transparent" Grid.Row="1"  Direction="Row" Wrap="Wrap" JustifyContent="SpaceAround">
+                    <Label Text="{Binding Lang.ProductNameLabel}" Style="{StaticResource lableCard}" />
+                    <Label Text="|" Style="{StaticResource lableCard}"/>
+                    <Label Text="{Binding Lang.UnitPriceLable}" Style="{StaticResource lableCard}"/>
+                    <Label Text="|" Style="{StaticResource lableCard}"/>
+                    <Label Text="{Binding Lang.QuantityLable}" Style="{StaticResource lableCard}"/>
+                    <Label Text="|" Style="{StaticResource lableCard}"/>
+                    <Label Text="{Binding Lang.TotalPriceLable}" Style="{StaticResource lableCard}"/>
+                </FlexLayout>
+                
+                <Grid  Grid.Row="1" BackgroundColor="{StaticResource textColor1}" Opacity="0.6" HeightRequest="1" VerticalOptions="End" />
+
+                <ListView  Grid.Row="2" ItemsSource="{Binding Items}" SelectedItem="{Binding selectItem}" RowHeight="80" >
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="model:CartItemModel">
+                            <ViewCell  >
+                                <Grid >
+                                    <VerticalStackLayout Padding="0 , 20" Margin="0 , 4">
+                                        <Grid ColumnDefinitions="* , * , * ,* , * , * , *" >
+                                            <Label Grid.Column="0" Text="{Binding ItemName}" LineBreakMode="WordWrap" Style="{StaticResource lable}"     />
+                                            <Label Grid.Column="2" Text="{Binding Price  ,StringFormat='${0:F2}'}" Style="{StaticResource lable}"   />
+                                            <Label Grid.Column="4" Text="{Binding Qty}" Style="{StaticResource lable}"   />
+                                            <Label Grid.Column="6" Text="{Binding TotalPrice  ,StringFormat='${0:F2}'}" Style="{StaticResource lable}"  TextColor="#254EDB"   />
+                                        </Grid>
+                                        <Grid Margin="0 ,6 , 0 ,0 "  ColumnDefinitions="* , * , * ,* , * , * , *" IsVisible="{Binding ShowDiscount}">
+                                            <Label Grid.Column="0" Text="disoucnt" HorizontalOptions="Center" Style="{StaticResource lable}" TextColor="#FF352B" />
+                                            <Label Text="{Binding Discount_percentage}" HorizontalTextAlignment="Start"  Grid.Column="0" HorizontalOptions="Center" Margin="0 , 10 , 0 , 0"  Style="{StaticResource lable}" TextColor="#FF352B" />
+                                            <Label Text="{Binding Disocunt  ,StringFormat='${0:F2}'}" Grid.Column="6"  HorizontalOptions="Center" Style="{StaticResource lable}" TextColor="#FF352B" />
+                                        </Grid>
+                                        <StackLayout  VerticalOptions="Fill" HorizontalOptions="Fill" IsVisible="true"  HeightRequest="2"  BackgroundColor="#1A000000" Margin="50 , 10"  />
+
+                                    </VerticalStackLayout>
+                                    <Image WidthRequest="20" HeightRequest="20" VerticalOptions="Start" HorizontalOptions="End" IsVisible="{Binding IsPromo}">
+                                        <Image.Source>
+                                            <FontImageSource FontFamily="FAS"  Glyph="{x:Static helper:FontAwosomeHelper.Star}" Color="#292D32" />
+                                        </Image.Source>
+                                    </Image>
+                                </Grid>
+                                
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                
+                <Border   BackgroundColor="#FFFFFF"  VerticalOptions="End" HorizontalOptions="Fill" Grid.Row="3" Style="{StaticResource cardDetaildBorder}" Stroke="#08000000">
+                    <ScrollView>
+                        <VerticalStackLayout Spacing="5">
+                            <Label Text="{Binding Lang.TotalOrderLabel}" Style="{StaticResource lable_total_order}" HorizontalOptions="Center"/>
+
+                            <Grid >
+                                <Label Style="{StaticResource lable_left}"  Text="{Binding Lang.SubtTotalLable}" HorizontalOptions="Start" />
+                                <Label Style="{StaticResource lable_right}" Text="{Binding Subtoal ,StringFormat='${0:F2}'}" HorizontalOptions="End" TextColor="#3366FF" />
+                            </Grid>
+
+
+                            <Grid >
+                                <Label Style="{StaticResource lable_left}" Text="{Binding Lang.TaxLable}" HorizontalOptions="Start" />
+                                <Label Style="{StaticResource lable_right}"  Text="{Binding Tax ,StringFormat='${0:F2}'}" HorizontalOptions="End" TextColor="#3366FF" />
+                            </Grid>
+
+                            <Grid >
+                                <Label Style="{StaticResource lable_left}" Text="{Binding Lang.DiscountLable}" HorizontalOptions="Start" />
+                                <Label Style="{StaticResource lable_right}" Text="{Binding Disocunt  ,StringFormat='${0:F2}'}" HorizontalOptions="End" TextColor="#3366FF" />
+                            </Grid>
+
+                            <StackLayout  VerticalOptions="Fill" HorizontalOptions="Fill"  HeightRequest="2"  BackgroundColor="#0F000000" />
+
+                            <Grid >
+                                <Label Style="{StaticResource lable_left}" Text="{Binding Lang.TotalAmountLabel}" HorizontalOptions="Start" />
+                                <Label Style="{StaticResource lable_right}" Text="{Binding Total  ,StringFormat='${0:F2}'}" HorizontalOptions="End" TextColor="#3366FF" />
+                            </Grid>
+
+                        </VerticalStackLayout>
+                    </ScrollView>
+                </Border>
+
+            </Grid>
+        </Border>
+        <ActivityIndicator  IsVisible="{Binding IsIndicatroActive}" IsRunning="{Binding IsIndicatroActive}"/>
+        <VerticalStackLayout Padding="10 , 0" Grid.Row="1" Spacing="10" IsVisible="{Binding IsFormVisiable}" >
+
+            <Grid ColumnDefinitions="* , *" ColumnSpacing="10">
+                <Button Command="{Binding cashPaymentCommand}" Grid.Column="0" FontSize="12" TextColor="{StaticResource textColor1}" FontAttributes="Bold" Text="{Binding Lang.CashBtn}" BackgroundColor="{StaticResource white}" BorderWidth="2" BorderColor="{StaticResource backgroundButton}"  Style="{StaticResource buttons}"/>
+                <Button Command="{Binding CriedtPaymentCommand}" Grid.Column="1" Text="{Binding Lang.CridtBtn}" TextColor="{StaticResource textColor1}"  FontAttributes="Bold"  BackgroundColor="{StaticResource white}" BorderWidth="2" BorderColor="{StaticResource backgroundButton}" Style="{StaticResource buttons}"/>
+            </Grid>
+
+            <Button Command="{Binding ClickPaymentCommand}" Text="{Binding Lang.PaymentBtn}" Style="{StaticResource buttons}" FontAttributes="Bold" FontSize="12" BorderWidth="1" CornerRadius="8" BackgroundColor="{StaticResource backgroundButton}" BorderColor="{StaticResource backgroundButton}" TextColor="{StaticResource  ButtonTextColorFF}" />
+
+        </VerticalStackLayout>
+    </Grid>
+</ContentView>

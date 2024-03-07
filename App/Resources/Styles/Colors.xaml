@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <!-- Note: For Android please see also Platforms\Android\Resources\values\colors.xml -->
+
+
+
+
+    <!-- Colors Border And BackGroud Start -->
+    <Color x:Key="BorderF4"  >#E0E9F4</Color>
+    <Color x:Key="MainbackgroundE7" >#DADDE7</Color>
+    <Color x:Key="TextFC" >#F8F9FC</Color>
+    <Color x:Key="IconColor2C" >#1a202c</Color>
+    <Color x:Key="TextError6D" >#db1f26</Color>
+    <Color x:Key="TextErrorSeond9B" >#FB539B</Color>
+    <Color x:Key="MainPlainText2C" >#1a202c</Color>
+    <Color x:Key="ButtonBackGround6FF" >#3366ff</Color>
+    <Color x:Key="ButtonBackGroudnSecondEED" >#2BAEED</Color>
+    <Color x:Key="ProductTotalPriceDB" >#254EDB</Color>
+    <Color x:Key="ButtonTextColorFF" >#ffffff</Color>
+    <Color x:Key="BlackColor00" >#000000</Color>
+    <Color x:Key="ButtonBorderE9" >#C3D4E9</Color>
+    <Color x:Key="TextBlockTotalPrice" >#00000099</Color>
+    <Color x:Key="BorderButtonNext_BrivresFF" >#D6E4FF</Color>
+    <Color x:Key="IconButtonNext_BrivesD32" >#292D32</Color>
+    <Color x:Key="Border_Discount9FF" >#84A9FF</Color>
+    <Color x:Key="Disoucnt_Text_80"  >#808080</Color>
+    <Color x:Key="Disoucnt_Border_Buttons" >#90A3BF</Color>
+    <Color x:Key="Discount_BackGroundColor_FC" >#F8F9FC</Color>
+    <Color x:Key="BorderClient_Backgournd_D9" >#D9D9D9</Color>
+    <Color x:Key="Background_F6"  >#EAEDF6</Color>
+    <Color x:Key="AddonColor103" >#71A103</Color>
+    <Color x:Key="Disoucnt_Color_2B" >#FF352B</Color>
+    <Color x:Key="invoices_status_color" >#C5EC3F</Color>
+    <Color x:Key="invoices_status_text_color" >#578101</Color>
+    <Color x:Key="Background_Color_Settings_Active" >#ADC8FF</Color>
+    <Color x:Key="Background_Color_Settings" >#D4D4D4</Color>
+    <Color x:Key="Warning_Massage_Background_Color" >#FFC047</Color>
+
+
+
+    <Color x:Key="Main_Border_Shadow_Color_ac5" >#0b3ac5</Color>
+    <Color x:Key="EllipsBackGroudUserE9"  >#C3D4E9</Color>
+
+
+    <!-- Colors Border And BackGroud End -->
+
+
+
+    <!--  back color Start -->
+
+    <Color x:Key="PrimaryBackcolor1">#0A003A</Color>
+    <Color x:Key="PrimaryBackcolor2">#1C0E49</Color>
+    <Color x:Key="SecondBackcolor1">#24105F</Color>
+    <Color x:Key="SecondBackcolor2">#210F55</Color>
+
+    <!--  back color End -->
+
+
+    <!--  Windows Border Color Start -->
+
+    <Color x:Key="WinBorderColor1">#6D2FFF</Color>
+    <Color x:Key="WinBorderColor2">#FB539B</Color>
+    <Color x:Key="WinBorderColor3">#836EFB</Color>
+
+
+    <!--  Windows Border Color End -->
+
+    <!--  Color Palette Start -->
+
+
+    <Color x:Key="Color1">#E285DE</Color>
+    <Color x:Key="Color2">#784DFD</Color>
+    <Color x:Key="Color3">#4ADAEC</Color>
+    <Color x:Key="Color4">#FB539B</Color>
+    <Color x:Key="Color5">#7EB2FC</Color>
+    <Color x:Key="Color6">#FFC047</Color>
+    <Color x:Key="Color7">#EF6C96</Color>
+    <Color x:Key="Color8">#78A3FC</Color>
+    <Color x:Key="Color9">#07F3c0</Color>
+    <Color x:Key="Color10">#FBA1AA</Color>
+
+    <!--  Color Palette End -->
+
+
+
+
+    <!--Font Color Start-->
+
+    <Color x:Key="TitelColor1" >#E0E1F1</Color>
+    <Color x:Key="TitelColor2" >#D5CFF5</Color>
+    <Color x:Key="TitelColor3" >#BCBEE0</Color>
+    <Color x:Key="PlainTextColor1" >#9497CD</Color>
+    <Color x:Key="PlainTextColor2" >#7C80C2</Color>
+    <Color x:Key="PlainTextColor3" >#7376BD</Color>
+
+    <!--Font Color End-->
+
+    <!-- Panel Colors Satart  -->
+
+    <Color x:Key="PanelColor1" >#200F53</Color>
+    <Color x:Key="PanelColor2" >#281269</Color>
+    <Color x:Key="PanelColor3" >#2B1372</Color>
+
+    <!-- Panel Colors End  -->
+    <Color x:Key="Primary">#512BD4</Color>
+    <Color x:Key="PrimaryDark">#ac99ea</Color>
+    <Color x:Key="PrimaryDarkText">#242424</Color>
+    <Color x:Key="Secondary">#DFD8F7</Color>
+    <Color x:Key="SecondaryDarkText">#9880e5</Color>
+    <Color x:Key="Tertiary">#2B0B98</Color>
+
+    <Color x:Key="White">White</Color>
+    <Color x:Key="Black">Black</Color>
+    <Color x:Key="Magenta">#D600AA</Color>
+    <Color x:Key="MidnightBlue">#190649</Color>
+    <Color x:Key="OffBlack">#1f1f1f</Color>
+
+    <Color x:Key="Gray100">#E1E1E1</Color>
+    <Color x:Key="Gray200">#C8C8C8</Color>
+    <Color x:Key="Gray300">#ACACAC</Color>
+    <Color x:Key="Gray400">#919191</Color>
+    <Color x:Key="Gray500">#6E6E6E</Color>
+    <Color x:Key="Gray600">#404040</Color>
+    <Color x:Key="Gray900">#212121</Color>
+    <Color x:Key="Gray950">#141414</Color>
+
+    <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource Primary}"/>
+    <SolidColorBrush x:Key="SecondaryBrush" Color="{StaticResource Secondary}"/>
+    <SolidColorBrush x:Key="TertiaryBrush" Color="{StaticResource Tertiary}"/>
+    <SolidColorBrush x:Key="WhiteBrush" Color="{StaticResource White}"/>
+    <SolidColorBrush x:Key="BlackBrush" Color="{StaticResource Black}"/>
+
+    <SolidColorBrush x:Key="Gray100Brush" Color="{StaticResource Gray100}"/>
+    <SolidColorBrush x:Key="Gray200Brush" Color="{StaticResource Gray200}"/>
+    <SolidColorBrush x:Key="Gray300Brush" Color="{StaticResource Gray300}"/>
+    <SolidColorBrush x:Key="Gray400Brush" Color="{StaticResource Gray400}"/>
+    <SolidColorBrush x:Key="Gray500Brush" Color="{StaticResource Gray500}"/>
+    <SolidColorBrush x:Key="Gray600Brush" Color="{StaticResource Gray600}"/>
+    <SolidColorBrush x:Key="Gray900Brush" Color="{StaticResource Gray900}"/>
+    <SolidColorBrush x:Key="Gray950Brush" Color="{StaticResource Gray950}"/>
+</ResourceDictionary>

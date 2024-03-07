@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App.Views.PaymentsPage"
+             xmlns:vm="clr-namespace:App.ViewModel"
+             x:DataType="vm:PaymentsPageViewModel"
+             xmlns:model="clr-namespace:App.Model"
+             BackgroundColor="#F8F9FC"
+             xmlns:controller="clr-namespace:App.Controls"
+             >
+    <ScrollView>
+        <VerticalStackLayout>
+            <Border Margin="10" Padding="20,32" BackgroundColor="#EAEDF6" StrokeThickness="0" StrokeShape="RoundRectangle 10,10,10,10">
+                <VerticalStackLayout Spacing="24">
+                    <Grid>
+                        <Label Text="{Binding Lang.OrderAmountLabel}" FontSize="16" FontAttributes="Bold" TextColor="#1A202C" HorizontalOptions="Start" />
+                        <Label Text="{Binding OrderAmount ,StringFormat='${0:F2}'}" FontSize="20" FontAttributes="Bold" TextColor="#1A202C" HorizontalOptions="End" />
+                    </Grid>
+                    <Grid>
+                        <Label Text="{Binding Lang.TaxesLabel}" FontSize="16" FontAttributes="Bold" TextColor="#1A202C" HorizontalOptions="Start" />
+                        <Label Text="{Binding Taxes ,StringFormat='${0:F2}'}" FontSize="20" FontAttributes="Bold" TextColor="#1A202C" HorizontalOptions="End" />
+                    </Grid>
+                    <Grid>
+                        <Label Text="{Binding Lang.DiscountLabel}" FontSize="16" FontAttributes="Bold" TextColor="#1A202C" HorizontalOptions="Start" />
+                        <Label Text="{Binding Discount ,StringFormat='${0:F2}'}" FontSize="20" FontAttributes="Bold" TextColor="#1A202C" HorizontalOptions="End" />
+                    </Grid>
+                    <Grid>
+                        <Label Text="{Binding Lang.RemaniningLable}" FontSize="16" FontAttributes="Bold" TextColor="#1A202C" HorizontalOptions="Start" />
+                        <Label Text="{Binding Remaining  ,StringFormat='${0:F2}'}" FontSize="20" FontAttributes="Bold" TextColor="#1A202C" HorizontalOptions="End" />
+                    </Grid>
+                </VerticalStackLayout>
+            </Border>
+            <FlexLayout BindableLayout.ItemsSource="{Binding MethodPayments}"  Wrap="Wrap" Margin="0 , 20 , 0 , 0" JustifyContent="SpaceBetween">
+                <BindableLayout.ItemTemplate >
+                    <DataTemplate x:DataType="model:MethodPaymentModel"  >
+                        <Border  HeightRequest="80"  FlexLayout.Basis="49%" Margin="10" BackgroundColor="#F8F9FC" Stroke="#90A3BF" StrokeThickness="1.5" StrokeShape="RoundRectangle 15,15,15,15">
+                            <HorizontalStackLayout Spacing="15" HorizontalOptions="Center" VerticalOptions="Center">
+                                <controller:ImageBase64Control Base64Source="{Binding PaymentIcon}"  IsVisible="{Binding ShowIcon}"/>
+                                <Button Command="{Binding ClickMethodPaymentCommand}" BorderWidth="0" Padding="0" Margin="0" BackgroundColor="Transparent" Text="{Binding PaymentName}" TextColor="#1A202C" FontAttributes="Bold" FontSize="14" />
+                            </HorizontalStackLayout>
+                        </Border>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </FlexLayout>
+            <FlexLayout BindableLayout.ItemsSource="{Binding Payments}"  Wrap="Wrap" Margin="0 , 20 , 0 , 0" JustifyContent="SpaceBetween">
+                <BindableLayout.ItemTemplate >
+                    <DataTemplate x:DataType="model:PaymentModel" >
+                        <Border HeightRequest="80" BackgroundColor="#3366FF" FlexLayout.Basis="45%" Margin="10" Stroke="#3366FF" StrokeThickness="1.5" StrokeShape="RoundRectangle 15,15,15,15">
+                            <VerticalStackLayout Spacing="5" HorizontalOptions="Center" VerticalOptions="Center">
+                                <Label HorizontalOptions="Center" Text="{Binding PaymentName}" TextColor="#FFFFFF" FontSize="24" FontAttributes="Bold" />
+                                <Label HorizontalOptions="Center" Text="{Binding Amount  ,StringFormat='${0:F2}'}" TextColor="#FFFFFF" FontSize="24" FontAttributes="Bold" />
+                            </VerticalStackLayout>
+                        </Border>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </FlexLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentView>

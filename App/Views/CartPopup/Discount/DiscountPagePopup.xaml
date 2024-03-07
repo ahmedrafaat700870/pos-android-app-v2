@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mopups:PopupPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App.Views.CartPopup.Discount.DiscountPagePopup"
+             xmlns:mopups="clr-namespace:Mopups.Pages;assembly=Mopups"
+             BackgroundColor="#80000000"
+             CloseWhenBackgroundIsClicked="False"
+             Padding="0" 
+             xmlns:vm="clr-namespace:App.ViewModel.Cart.Discount"
+             x:DataType="vm:DiscountPageViewModel"
+             >
+    <mopups:PopupPage.Resources>
+        <Style TargetType="Button" x:Key="activeButton">
+            <Setter Property="BorderWidth" Value="0" />
+            <Setter Property="TextColor" Value="#3366FF" />
+            <Setter Property="BackgroundColor" Value="Transparent"/>
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="FontSize" Value="15" />
+        </Style>
+
+        <Style TargetType="Button" x:Key="disActiveButton" BasedOn="{StaticResource activeButton}">
+            <Setter Property="TextColor" Value="#1A202C" />
+        </Style>
+
+        <Style TargetType="Border" x:Key="activeBorder" >
+            <Setter Property="HeightRequest" Value="5" />
+            <Setter Property="Stroke" Value="#3366FF" />
+            <Setter Property="BackgroundColor" Value="#3366FF" />
+        </Style>
+        <Style TargetType="Border" x:Key="disActiveBorder" BasedOn="{StaticResource activeBorder}">
+            <Setter Property="Stroke" Value="#90A3BF" />
+            <Setter Property="BackgroundColor" Value="#90A3BF" />
+        </Style>
+    </mopups:PopupPage.Resources>
+    <VerticalStackLayout WidthRequest="350"  HeightRequest="250"  Spacing="10"  VerticalOptions="Center" HorizontalOptions="CenterAndExpand" BackgroundColor="White">
+        <Grid Margin="10" HeightRequest="50" ColumnDefinitions="* , *" ColumnSpacing="10">
+            <Button Text="{Binding Lang.Order}"  Style="{Binding OrderButton}" x:Name="order" Grid.Column="0" Command="{Binding clickOrderCommand}" />
+            <Border  Grid.Column="0"  Style="{Binding OrderBorder}" VerticalOptions="End" StrokeShape="RoundRectangle 5,5,5,5" />
+            <Button Text="{Binding Lang.Item}"  x:Name="item" Grid.Column="1" Command="{Binding clickItemCommand}" Style="{Binding ItemButton}"/>
+            <Border  Grid.Column="1"  Style="{Binding ItemBorder}" VerticalOptions="End" StrokeShape="RoundRectangle 5,5,5,5" />
+        </Grid>
+        <ContentView x:Name="container" Content="{Binding Conatiner}"/>
+    </VerticalStackLayout>
+</mopups:PopupPage>

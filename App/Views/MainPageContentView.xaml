@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:helper="clr-namespace:App.Helpers"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="#E0E9F4"
+             xmlns:vm="clr-namespace:App.ViewModel"
+             x:Class="App.Views.MainPageContentView"
+             x:DataType="vm:MainPageContentViewViewModel"
+             xmlns:mct="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"
+             >
+    <Page.Behaviors>
+        <mct:StatusBarBehavior StatusBarColor="#E0E9F4" />
+    </Page.Behaviors>
+    <Grid RowDefinitions="* , 80" BackgroundColor="#E0E9F4">
+        <ContentView Padding="10" Content="{Binding MainContentView}"  BackgroundColor="#E0E9F4"  x:Name="container"  />
+        <Border Grid.Row="1" Stroke="Transparent" BackgroundColor="White" StrokeShape="RoundRectangle 30,30,0,0" >
+
+            <ScrollView Orientation="Horizontal" BackgroundColor="Transparent" HorizontalOptions="Center"  >
+                <Grid ColumnSpacing="50"   ColumnDefinitions="* , * , * , *, *" VerticalOptions="Center" >
+                 
+                    <ImageButton Grid.Column="0" WidthRequest="30"  Command="{Binding NavigateToHomePageCommand}" >
+                        <ImageButton.Source>
+                            <FontImageSource  FontFamily="FAS" Glyph="{x:Static helper:FontAwosomeHelper.House}" Color="{Binding HomeColor}" />
+                        </ImageButton.Source>
+                    </ImageButton>
+                    <ImageButton Grid.Column="1" Command="{Binding NavigateToSettingPageCommand}" WidthRequest="30" >
+                        <ImageButton.Source>
+                            <FontImageSource FontFamily="FAS" Glyph="{x:Static helper:FontAwosomeHelper.Gear}" Color="{Binding SettingsColor}" />
+                        </ImageButton.Source>
+                    </ImageButton>
+                    <ImageButton Grid.Column="2" WidthRequest="30"  Command="{Binding NavigateToSavedOrderPageCommand}" >
+                        <ImageButton.Source>
+                            <FontImageSource  FontFamily="FAS" Glyph="{x:Static helper:FontAwosomeHelper.ArrowsSpin}" Color="{Binding SavedPageColor}" />
+                        </ImageButton.Source>
+                    </ImageButton>
+                    <ImageButton Grid.Column="3" WidthRequest="30"  Command="{Binding LogoutCommand}">
+                        <ImageButton.Source>
+                            <FontImageSource  FontFamily="FAS" Glyph="{x:Static helper:FontAwosomeHelper.ArrowRightFromBracket}" Color="{Binding LogoutColor}" />
+                        </ImageButton.Source>
+                    </ImageButton>
+                    <!--<ImageButton Grid.Column="3" WidthRequest="30"  Command="{Binding NavigateToRefundPageCommand}">
+                        <ImageButton.Source>
+                            <FontImageSource  FontFamily="FAS" Glyph="{x:Static helper:FontAwosomeHelper.SquareFull}" Color="{Binding RefundPageColor}" />
+                        </ImageButton.Source>
+                    </ImageButton>-->
+                </Grid>
+            </ScrollView>
+        </Border>
+    </Grid>
+</ContentPage>

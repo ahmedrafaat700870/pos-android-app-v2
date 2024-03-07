@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model="clr-namespace:App.Model"
+             xmlns:vm="clr-namespace:App.ViewModel.SavedOrder"
+             x:Class="App.Views.SavedOrder.SavedOrderPage"
+             x:DataType="vm:SavedOrderViewModel"
+             >
+    <ContentView.Resources>
+        <Style TargetType="Label" x:Key="Header_Min_txt" >
+            <Setter Property="TextColor" Value="{StaticResource Disoucnt_Border_Buttons}" />
+            <Setter Property="FontSize" Value="10" />
+            <Setter Property="HorizontalOptions"  Value="End"/>
+        </Style>
+        <Style TargetType="Label" x:Key="Body_Owner_txt" >
+            <Setter Property="Text" Value="Take out (Owner)" />
+            <Setter Property="VerticalOptions" Value="Center" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+            <Setter Property="Grid.Row" Value="1" />
+        </Style>
+        <Style TargetType="Label" x:Key="Footer_Timer_txt" >
+            <Setter Property="Text" Value="12:20 pm" />
+            <Setter Property="HorizontalOptions" Value="Start" />
+            <Setter Property="Grid.Column" Value="0" />
+        </Style>
+        <Style TargetType="Label" x:Key="Footer_Date_txt" >
+            <Setter Property="Text" Value="08/092022" />
+            <Setter Property="HorizontalOptions" Value="End" />
+            <Setter Property="Grid.Column" Value="1" />
+        </Style>
+    </ContentView.Resources>
+    <ScrollView>
+        <VerticalStackLayout Spacing="25">
+            <Label 
+            Text="{Binding Lang.Header}"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+            <FlexLayout  Margin="0 , 10 , 0 , 0" Wrap="Wrap" BindableLayout.ItemsSource="{Binding Items}"  >
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate x:DataType="model:SavedOrderItemModel" >
+                        <Border Padding="20"  HeightRequest="250"  FlexLayout.Basis="50%" Margin="2" BackgroundColor="#F8F9FC" Stroke="#E0E9F4" StrokeThickness="1" StrokeShape="RoundRectangle 8,8,8,8">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0" VerticalOptions="Start">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Text="{Binding Id}"  Style="{StaticResource Header_Min_txt}" HorizontalOptions="Start" TextColor="Black" VerticalTextAlignment="Center" />
+                                    <Label Text="{Binding From}" Grid.Column="1" Style="{StaticResource Header_Min_txt}" VerticalTextAlignment="Center" />
+                                </Grid>
+                                <Label VerticalOptions="Center" Text="{Binding Owner}" Grid.Row="1" Style="{StaticResource Body_Owner_txt}" VerticalTextAlignment="Center" />
+                                <Grid Grid.Row="2" VerticalOptions="Center">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Text="{Binding TimeSavedOrder}" Style="{StaticResource Footer_Timer_txt}" VerticalTextAlignment="Center"/>
+                                    <Label Text="{Binding DateSavedOrder}" Style="{StaticResource Footer_Date_txt}" VerticalTextAlignment="Center"/>
+                                </Grid>
+                                <Grid Grid.Row="3" VerticalOptions="End" ColumnSpacing="10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Button Grid.Column="0" HorizontalOptions="Center" Padding="10 , 15" Command="{Binding ClickAddCommand}" Text="{Binding Lang.AddBtn}" />
+                                    <Button Grid.Column="1" HorizontalOptions="Center" Padding="10 , 15" Command="{Binding ClickRemoveCommand}" Text="{Binding Lang.CancleBtn}" />
+                                </Grid>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </FlexLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentView>

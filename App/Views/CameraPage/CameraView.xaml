@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:cv="clr-namespace:Camera.MAUI;assembly=Camera.MAUI"
+             xmlns:vm="clr-namespace:App.Lang.CameraPage"
+             x:Class="App.Views.CameraPage._CameraView"
+             x:DataType="vm:CameraViewLang"
+             >
+    <ScrollView>
+        <VerticalStackLayout 
+        Spacing="25"
+        Padding="30 ,0"
+        VerticalOptions="Fill"
+        HorizontalOptions="Fill"
+        >
+        <cv:CameraView x:Name="cameraView" WidthRequest="300" HeightRequest="300" 
+                       CamerasLoaded="CameraView_CamerasLoaded" BarcodeDetected="cameraView_BarcodeDetected" 
+                       BarCodeDetectionEnabled="True"
+                       BarCodeDetectionMaxThreads="1"
+                       />
+
+        <Entry VerticalOptions="Center"  TextChanged="resualt_TextChanged" x:Name="resualt" />
+        <Button x:Name="cam1" Text="{Binding Cam1Btn}" Clicked="cam1_Clicked" />
+        <Button x:Name="cam2" Text="{Binding Cam2Btn}" Clicked="cam2_Clicked" />
+        <Button x:Name="close" Text="{Binding CloseBtn}" Clicked="close_Clicked" />
+    </VerticalStackLayout>
+    </ScrollView>
+</ContentView>

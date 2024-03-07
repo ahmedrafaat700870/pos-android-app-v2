@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App.Views.Refund.OrderPage.OrderPage"
+             xmlns:vm="clr-namespace:App.ViewModel.Refund.Order_Page"
+             xmlns:model="clr-namespace:App.Model"
+             x:DataType="vm:OrderPageViewModel"
+             >
+    <Grid RowDefinitions="* ,50  ,*  , *" RowSpacing="15">
+        <Border Grid.Row="0">
+            <VerticalStackLayout>
+                <Grid ColumnDefinitions="* ,*">
+                    <Label Text="order id"/>
+                    <Label Text="{Binding OrderId}" Grid.Column="1"/>
+                </Grid>
+                <Grid ColumnDefinitions="* ,*">
+                    <Label Text="client name"/>
+                    <Label Text="{Binding ClientName}" Grid.Column="1"/>
+                </Grid>
+                <Grid ColumnDefinitions="* ,*">
+                    <Label Text="order date"/>
+                    <Label Text="{Binding OrderDate}" Grid.Column="1"/>
+                </Grid>
+                <Grid ColumnDefinitions="* ,*">
+                    <Label Text="status"/>
+                    <Label Text="{Binding Status}" Grid.Column="1"/>
+                </Grid>
+            </VerticalStackLayout>
+        </Border>
+        <CheckBox Grid.Row="1"  IsChecked="{Binding RefundAll}" />
+        <VerticalStackLayout Grid.Row="2" >
+            <ListView BindableLayout.ItemsSource="{Binding OrderItems}" SelectedItem="{Binding OrderItem}">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate x:DataType="model:OrderPageModel">
+                        <Grid ColumnDefinitions="*, 4*" >
+                            <CheckBox IsChecked="{Binding RefundAll}" />
+                            <HorizontalStackLayout Grid.Column="1" IsEnabled="{Binding IsDataEnable}"  >
+                                <Label Text="{Binding Name}"/>
+                                <Button Text="-" Command="{Binding ClickIncermentCommand}" />
+                                <Label Text="{Binding Qty}"/>
+                                <Button Text="+" Command="{Binding ClickDecremntCommand}"/>
+                                <Label Text="{Binding Price}"/>
+                            </HorizontalStackLayout>
+                        </Grid>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </ListView>
+        </VerticalStackLayout>
+        <HorizontalStackLayout Grid.Row="3" Spacing="10" VerticalOptions="Center" HorizontalOptions="Center">
+            <Button Text="print" Command="{Binding ClickPrintCommand}" />
+            <Button Text="refund" Command="{Binding ClickRefundCommand}" />
+        </HorizontalStackLayout>
+    </Grid>
+
+</ContentView>

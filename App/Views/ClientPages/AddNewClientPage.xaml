@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:App.ViewModel.ClientPages"
+             x:DataType="vm:AddNewClientPageViewModel"
+             x:Class="App.Views.ClientPages.AddNewClientPage"
+             BackgroundColor="#E0E9F4"
+             >
+
+    <ContentView.Resources>
+        <Style TargetType="Border" x:Key="activeBorder">
+            <Setter Property="Stroke" Value="#84A9FF" />
+        </Style>
+        <Style TargetType="Border" x:Key="disActiveBorder">
+            <Setter Property="Stroke" Value="#C3D4E9" />
+        </Style>
+        <Style TargetType="Border" x:Key="errorBorder">
+            <Setter Property="Stroke" Value="PaleVioletRed" />
+        </Style>
+        <Style TargetType="Entry" x:Key="activeLable">
+            <Setter Property="TextColor" Value="#1A202C" />
+            <Setter Property="PlaceholderColor" Value="#1A202C" />
+        </Style>
+        <Style TargetType="Entry" x:Key="disActiveLable">
+            <Setter Property="TextColor" Value="#808080" />
+            <Setter Property="PlaceholderColor" Value="#808080" />
+        </Style>
+        <Style TargetType="Entry" x:Key="errorLalble">
+            <Setter Property="TextColor" Value="OrangeRed" />
+            <Setter Property="PlaceholderColor" Value="OrangeRed" />
+        </Style>
+    </ContentView.Resources>
+    <ScrollView>
+        <Border BackgroundColor="#F8F9FC" StrokeShape="RoundRectangle 10 , 10 , 10 ,10" >
+            <Grid RowDefinitions="40 ,* , 50" Margin="24" RowSpacing="32">
+                <Label Grid.Row="0"  Text="{Binding Lang.AddNewClientAndSuplier}" FontSize="16" FontAttributes="Bold" TextColor="#000000" />
+                <VerticalStackLayout Grid.Row="1" Spacing="10">
+                    <Border  HeightRequest="65" Style="{Binding Styles[0].Border}" BackgroundColor="#FFFFFF" StrokeThickness="1.5" StrokeShape="RoundRectangle 6, 6, 6, 6" Padding="10">
+                        <Entry Focused="Entry_Focused" TextChanged="Entry_TextChanged" AutomationId="0" Text="{Binding Name}" PlaceholderColor="#1A202C" Placeholder="{Binding Lang.NameEntry}" FontSize="12" Style="{Binding Styles[0].Entry}" VerticalOptions="Center"  />
+                    </Border>
+                    <Border  HeightRequest="65" Style="{Binding Styles[1].Border}"  BackgroundColor="#FFFFFF" StrokeThickness="1.5" StrokeShape="RoundRectangle 6, 6, 6, 6" Padding="10">
+                        <Entry Focused="Entry_Focused" TextChanged="Entry_TextChanged" AutomationId="1" Text="{Binding Phone}"  PlaceholderColor="#1A202C" Placeholder="{Binding Lang.PhoneEntrty}" FontSize="12" Style="{Binding Styles[1].Entry}" VerticalOptions="Center"  />
+                    </Border>
+                    <Border  HeightRequest="65" Style="{Binding Styles[2].Border}"  BackgroundColor="#FFFFFF" StrokeThickness="1.5" StrokeShape="RoundRectangle 6, 6, 6, 6" Padding="10">
+                        <Entry Focused="Entry_Focused" TextChanged="Entry_TextChanged" AutomationId="2" Text="{Binding Email}" PlaceholderColor="#1A202C" Placeholder="{Binding Lang.EmailEntry}" FontSize="12" Style="{Binding Styles[2].Entry}" VerticalOptions="Center"  />
+                    </Border>
+                    <Border  HeightRequest="65" Style="{Binding Styles[3].Border}"  BackgroundColor="#FFFFFF" StrokeThickness="1.5" StrokeShape="RoundRectangle 6, 6, 6, 6" Padding="10">
+                        <Entry Focused="Entry_Focused" TextChanged="Entry_TextChanged" AutomationId="3" Text="{Binding Vat_registrations_number}" PlaceholderColor="#1A202C" FontSize="12" Placeholder="{Binding Lang.VatRegestrationNumberEntry}" Style="{Binding Styles[3].Entry}" VerticalOptions="Center"  />
+                    </Border>
+                    <Border  HeightRequest="65" Style="{Binding Styles[4].Border}"  BackgroundColor="#FFFFFF" StrokeThickness="1.5" StrokeShape="RoundRectangle 6, 6, 6, 6" Padding="10">
+                        <Entry Focused="Entry_Focused" TextChanged="Entry_TextChanged" AutomationId="4" Text="{Binding Id_number}"  PlaceholderColor="#1A202C" Placeholder="{Binding Lang.IdNumberEntry}" FontSize="12" Style="{Binding Styles[4].Entry}" VerticalOptions="Center"  />
+                    </Border>
+                    <HorizontalStackLayout HorizontalOptions="Start" Margin="0 , 15 , 0 , 0" VerticalOptions="Center">
+                        <Label  VerticalOptions="Center" Text="{Binding Lang.Client}" FontSize="16" FontAttributes="Bold" TextColor="#000000" />
+                        <Switch VerticalOptions="Center" Margin="18,0,0,5" WidthRequest="123" ThumbColor="White" HeightRequest="35" OnColor="#3366FF" IsToggled="{Binding IsClient}" />
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+                <Grid Grid.Row="2" ColumnDefinitions="* , *" ColumnSpacing="10" Margin="10 , 0" HorizontalOptions="End" >
+                    <Button WidthRequest="100" Command="{Binding CancleClickCommand}" FontAttributes="Bold" CornerRadius="10" BackgroundColor="White"  BorderColor="#1A202C" TextColor="#1A202C"  Text="{Binding Lang.CancelBtn}"  Grid.Column="0" />
+                    <Button WidthRequest="100" Command="{Binding AddClickCommand}"  FontAttributes="Bold" CornerRadius="10" BackgroundColor="#3366FF"  BorderColor="#3366FF" TextColor="#FFFFFF"   Text="{Binding Lang.AddBtn}"  Grid.Column="1"  />
+                </Grid>
+            </Grid>
+        </Border>
+    </ScrollView>
+
+</ContentView>

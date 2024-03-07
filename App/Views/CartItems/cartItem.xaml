@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App.Views.CartItems.cartItem">
+
+    <ContentView.Resources>
+        <Style TargetType="Label" x:Key="lable">
+            <Setter Property="FontSize" Value="10" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="TextColor" Value="#1A202C" />
+            <Setter Property="HorizontalTextAlignment" Value="Center" />
+        </Style>
+    </ContentView.Resources>
+    
+    <Grid  x:Name="myGrid">
+        <FlexLayout BackgroundColor="Transparent" Grid.Row="1"  Direction="Row" Wrap="NoWrap" JustifyContent="SpaceBetween" >
+            <Label FlexLayout.Basis="25%" Text="Salted Pasta with mushro sauce" LineBreakMode="WordWrap" Style="{StaticResource lable}"     />
+            <Label FlexLayout.Basis="25%" Text="$12.00" Style="{StaticResource lable}"   />
+            <Label FlexLayout.Basis="25%" Text="1x" Style="{StaticResource lable}"   />
+            <Label FlexLayout.Basis="25%" Text="$12.00" Style="{StaticResource lable}"  TextColor="#254EDB"   />
+        </FlexLayout>
+
+        <Grid Opacity="0"  ColumnDefinitions="* , *" ColumnSpacing="10" >
+            <Grid WidthRequest="50" >
+            <Label Grid.Column="0" Text="Discount 50%" Style="{StaticResource lable}"  TextColor="#FF352B"  />
+            <Label Grid.Column="0" Text="Discount 50%" Style="{StaticResource lable}"  TextColor="#FF352B"  />
+            </Grid>
+            <Label Grid.Column="1" Text="-$6.00" Style="{StaticResource lable}" TextColor="#FF352B"  />
+        </Grid>
+        
+        
+        <Button Focused="Button_Focused"  BorderWidth="0" Clicked="Button_Clicked"  HorizontalOptions="Fill" VerticalOptions="Fill" BackgroundColor="Black" />
+        
+    </Grid>
+    
+    
+</ContentView>
