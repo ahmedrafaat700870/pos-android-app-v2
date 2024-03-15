@@ -7,8 +7,12 @@
 
         public override  void Add_Promo()
         {
+            this._Order_item.Quantity += 1;
+
             if (this.Promo.fixed_price == 0 && this.Promo.discount_in_percentage == 0)
                 return;
+           
+                
             this._Order_item.is_promo = true;
 
             if (this.Promo.fixed_price != 0)
