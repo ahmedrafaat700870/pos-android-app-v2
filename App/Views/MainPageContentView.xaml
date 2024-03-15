@@ -17,7 +17,7 @@
         <Border Grid.Row="1" Stroke="Transparent" BackgroundColor="White" StrokeShape="RoundRectangle 30,30,0,0" >
 
             <ScrollView Orientation="Horizontal" BackgroundColor="Transparent" HorizontalOptions="Center"  >
-                <Grid ColumnSpacing="50"   ColumnDefinitions="* , * , * , *, *" VerticalOptions="Center" >
+                <Grid ColumnSpacing="50"   ColumnDefinitions="* , * , * , *" VerticalOptions="Center" >
                  
                     <ImageButton Grid.Column="0" WidthRequest="30"  Command="{Binding NavigateToHomePageCommand}" >
                         <ImageButton.Source>

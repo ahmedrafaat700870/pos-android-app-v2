@@ -25,9 +25,9 @@
             if(CalcOrderItem is null)
             {
                 CalcOrderItem = new Calc_Order_item_Detalis();
-                CalcOrderItem.Set_Order(order);
+                CalcOrderItem.Set_Order(App.order);
             }
-
+            CalcOrderItem.Set_Order(App.order);
             return CalcOrderItem;
         }
 

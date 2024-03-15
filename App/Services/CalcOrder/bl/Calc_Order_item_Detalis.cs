@@ -85,6 +85,136 @@ namespace App.Services.CalcOrder.bl
 
         }
 
+        
+         /*Start V2*/
+        public void Calc_Order_ItemV2(bool is_discunt_for_total)
+        {
+            is_discount_for_total = is_discunt_for_total;
+            decimal add_on_total = 0;
+            decimal add_on_subtotal = 0;
+            decimal add_on_tax = 0;
+
+            foreach (var add_on in this.Order_Item.InventoryAddonitems)
+            {
+                add_on_total += add_on.Total * add_on.Qty;
+                add_on_subtotal += add_on.Price_Befor_Tax * add_on.Qty;
+                add_on_tax += add_on.Tax_Total * add_on.Qty;
+            }
+
+
+            decimal order_item_total = this.Order_Item.Quantity * this.Order_Item.Total;
+            decimal order_item_subtotal = this.Order_Item.Quantity * this.Order_Item.Subtotal;
+            decimal order_item_tax = this.Order_Item.Quantity * this.Order_Item.TaxTotal;
+
+
+            order_item_total += add_on_total;
+            order_item_subtotal += add_on_subtotal;
+            order_item_tax += add_on_tax;
+
+
+            this.Order_Item_Detalis.Order_Item_Total = order_item_total;
+            this.Order_Item_Detalis.Order_Item_SubTotal = order_item_subtotal;
+            this.Order_Item_Detalis.Order_Item_Tax = order_item_tax;
+
+            if (this.Order_Item.DiscountInPercentage > 0)
+                CalcDiscountPercentageForItemsAfterAndBeforeTax(this.Order_Item.DiscountInPercentage , order_item_total , order_item_subtotal , order_item_tax);
+            else
+            {
+                if(is_discount_for_total)
+                    CalcFixedDiscountForItemsAfterTax(this.Order_Item.Discount , order_item_total , order_item_subtotal , order_item_tax);
+                else 
+                    CalcFixedDiscountForItemsBeforeTax(this.Order_Item.Discount , order_item_total , order_item_subtotal , order_item_tax);
+            }
+
+        }
+
+        private void CalcFixedDiscountForItemsAfterTax(decimal fixed_discount, decimal total_price,
+            decimal total_subtotal, decimal total_taxes)
+        {
+            if(fixed_discount == 0  || total_price == 0 || total_subtotal == 0 || total_taxes == 0) return;
+            // .07
+            decimal item_discount_rate = fixed_discount / total_price;
+            //
+            decimal item_discount = item_discount_rate * total_price;
+            // .68
+            decimal item_subtotal_discount_rate = total_subtotal / total_price;
+            // .43
+            decimal discount_for_subtotal = item_subtotal_discount_rate * item_discount;
+
+            decimal subtotal_after_discount = total_subtotal - discount_for_subtotal;
+
+            decimal item_tax_discount = total_taxes / total_price;
+            decimal discount_for_tax = item_tax_discount * item_discount;
+            /*decimal tax_after_discount = total_taxes - discount_for_tax;
+            */
+
+
+            this.Order_Item_Detalis.Order_Item_Disocunt_Total = discount_for_tax + discount_for_subtotal;
+            this.Order_Item_Detalis.Order_Item_Discount_SubTotal = discount_for_subtotal;
+            this.Order_Item_Detalis.Order_Item_Discount_Tax = discount_for_tax;
+        }
+
+        private void CalcFixedDiscountForItemsBeforeTax(decimal fixed_discount, decimal total_price,
+            decimal total_subtotal, decimal total_taxes)
+        {
+            if(fixed_discount == 0  || total_price == 0 || total_subtotal == 0 || total_taxes == 0) return;
+            decimal order_discount_rate = fixed_discount / total_subtotal;
+
+            decimal item_discount = order_discount_rate * total_subtotal;
+            decimal item_subtotal_discount_rate = total_subtotal / total_subtotal;
+
+
+            decimal discount_for_subtotal = item_subtotal_discount_rate * item_discount;
+            decimal subtotal_after_discount = total_subtotal - discount_for_subtotal;
+
+            decimal item_tax_discount = total_taxes / total_subtotal;
+            decimal discount_for_tax = item_tax_discount * item_discount;
+            /*decimal tax_after_discount = total_taxes - discount_for_tax;
+            */
+
+            this.Order_Item_Detalis.Order_Item_Disocunt_Total = discount_for_tax + discount_for_subtotal;
+            this.Order_Item_Detalis.Order_Item_Discount_SubTotal = discount_for_subtotal;
+            this.Order_Item_Detalis.Order_Item_Discount_Tax = discount_for_tax;
+        }
+
+
+        private void CalcDiscountPercentageForItemsAfterAndBeforeTax(decimal discount_percentage, decimal total_price,
+            decimal total_subtotal, decimal total_taxes)
+        {
+            
+            if(discount_percentage == 0  || total_price == 0 || total_subtotal == 0 || total_taxes == 0) return;
+            
+            decimal taxes = 0;
+            decimal subtotal = 0;
+            decimal total_before_discount = total_price;
+            // convert discount from percentage to fixed
+            decimal discount = discount_percentage;
+
+
+            decimal discount_for_subtotal = discount * total_subtotal;
+            decimal discount_for_tax = discount * total_taxes;
+
+            /*decimal subtotal_after_discount = total_subtotal - discount_for_subtotal;
+            decimal discount_after_tax = total_taxes - discount_for_tax;
+
+            subtotal += subtotal_after_discount;
+            taxes += discount_after_tax;*/
+            
+            
+            this.Order_Item_Detalis.Order_Item_Disocunt_Total = discount_for_tax + discount_for_subtotal;
+            this.Order_Item_Detalis.Order_Item_Discount_SubTotal = discount_for_subtotal;
+            this.Order_Item_Detalis.Order_Item_Discount_Tax = discount_for_tax;
+            
+            
+        }
+
+
+        /*end V2*/
+        
+        
+        
+        
+        
         public List<TaxModel> Calc_Order_Item_With_Taxces()
         {
             List<TaxModel> tax_model = new List<TaxModel>();

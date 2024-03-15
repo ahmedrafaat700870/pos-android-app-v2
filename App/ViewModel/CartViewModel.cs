@@ -147,6 +147,8 @@
 
         private int reomveItemFromOrder()
         {
+            if (this.selectItem is null) return 0;
+            
             var date = this.selectItem.AddDate;
             return App.order.InventoryOrderProducts.RemoveAll(x => x.Added_Date == date);
         }
