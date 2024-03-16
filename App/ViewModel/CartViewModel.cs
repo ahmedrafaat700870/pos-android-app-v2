@@ -2,25 +2,17 @@
 {
     public partial class CartViewModel : ObservableObject
     {
-
-        [ObservableProperty]
-        private decimal total;
-        [ObservableProperty]
-        private decimal subtoal;
-        [ObservableProperty]
-        private decimal tax;
-        [ObservableProperty]
-        private decimal disocunt;
-        [ObservableProperty]
-        private bool isIndicatroActive = false;
-        [ObservableProperty]
-        private bool isFormVisiable = true;
+        [ObservableProperty] private decimal total;
+        [ObservableProperty] private decimal subtoal;
+        [ObservableProperty] private decimal tax;
+        [ObservableProperty] private decimal disocunt;
+        [ObservableProperty] private bool isIndicatroActive = false;
+        [ObservableProperty] private bool isFormVisiable = true;
 
         private readonly ICalacOrderServices _orderServices;
         private Order_Detalis order_detalis;
 
-        [ObservableProperty]
-        private CartPageLang lang;
+        [ObservableProperty] private CartPageLang lang;
 
         public void LoadLang()
         {
@@ -60,9 +52,8 @@
             this.Total = (order_detalis.Order_Total - order_detalis.Order_Discount_Total_Item);
         }
 
-        public CartItemModel selectItem { get; set; }
-        [ObservableProperty]
-        private ObservableCollection<CartItemModel> _items;
+        [ObservableProperty] public CartItemModel selectItem;
+        [ObservableProperty] private ObservableCollection<CartItemModel> _items;
 
         [RelayCommand]
         private void cashPayment()
@@ -73,6 +64,7 @@
                 ToastAddItemToOrder();
                 return;
             }
+
             var cashPayment = new PaymentsPaymentamount()
             {
                 Created = DateTime.Now,
@@ -91,6 +83,7 @@
                 ToastAddItemToOrder();
                 return;
             }
+
             var cridtPayment = new PaymentsPaymentamount()
             {
                 Created = DateTime.Now,
@@ -117,6 +110,7 @@
                 ToastAddItemToOrder();
                 return;
             }
+
             App.helperNavigation.NvigateToPaymentPage();
         }
 
@@ -131,36 +125,55 @@
         }
 
         [RelayCommand]
-        private void reomveItemFromCart()
+        private async void reomveItemFromCart()
         {
-            int countItemRemoved = reomveItemFromOrder();
-            LoadData();
+            if (this.SelectItem is null)
+                return;
+            await MoveItemByIndexToLast(this.Items.IndexOf(this.SelectItem));
+            await RemoveLastElementInItems();
+            reomveItemFromOrder();
             Resst();
             CalcOrder();
             OrderHeloper.CalcOrderItemCountInOrder();
         }
 
+        private Task<bool> MoveItemByIndexToLast(int index) => Task.Run(() =>
+        {
+            if(!this.Items.Contains(this.Items[index])) return false;
+            this.Items.Move(index , this.Items.Count -1);
+            return true;
+        });
+        
+
+        private Task RemoveLastElementInItems() => Task.Run(() =>
+        {
+            var removedItem = this.Items.LastOrDefault();
+            if (this.Items.Contains(removedItem))
+                this.Items.Remove(removedItem);
+        });
+
         private void RemoveSelectedItemFromCart()
         {
-            this.Items.Remove(selectItem);
+            if (this.Items.Contains(this.SelectItem))
+                this.Items.Remove(this.SelectItem);
         }
 
         private int reomveItemFromOrder()
         {
-            if (this.selectItem is null) return 0;
-            
-            var date = this.selectItem.AddDate;
+            if (this.SelectItem is null) return 0;
+
+            var date = this.SelectItem.AddDate;
             return App.order.InventoryOrderProducts.RemoveAll(x => x.Added_Date == date);
         }
 
         public bool checkFromSelectedItem()
         {
-            return this.selectItem is null ? false : true;
+            return this.SelectItem is null ? false : true;
         }
 
         private void Resst()
         {
-            this.selectItem = null;
+            this.SelectItem = null;
         }
 
         private bool CheckFromOrderEmpty() => App.order.InventoryOrderProducts.Count == 0;
@@ -170,6 +183,5 @@
             var message = HerlperSettings.GetLang().ToastLang.GetLang().AddItemInOrder;
             ToastHelper.Show(message);
         }
-
     }
 }

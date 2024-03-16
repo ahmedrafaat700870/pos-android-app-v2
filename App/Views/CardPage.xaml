@@ -138,7 +138,7 @@
                 
                 <Grid  Grid.Row="1" BackgroundColor="{StaticResource textColor1}" Opacity="0.6" HeightRequest="1" VerticalOptions="End" />
 
-                <ListView  Grid.Row="2" ItemsSource="{Binding Items}" SelectedItem="{Binding selectItem}" RowHeight="80" >
+                <ListView  Grid.Row="2" ItemsSource="{Binding Items}" SelectedItem="{Binding SelectItem}" RowHeight="80" >
                     <ListView.ItemTemplate>
                         <DataTemplate x:DataType="model:CartItemModel">
                             <ViewCell  >
