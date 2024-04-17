@@ -92,10 +92,10 @@
         private async void Login()
         {
             // check from internet .
-            await ChangeStatusLogin();
 
             try
             {
+                await ChangeStatusLogin();
                 if (!await CheckFromInternetConnectionV2())
                 {
                     InterNetConnectonError.Invoke();
