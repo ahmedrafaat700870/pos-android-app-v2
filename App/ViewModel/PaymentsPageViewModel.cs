@@ -1,4 +1,6 @@
-﻿namespace App.ViewModel
+﻿using App.Services.OrderPrint;
+
+namespace App.ViewModel
 {
     public partial class PaymentsPageViewModel : ObservableObject
     {
@@ -28,10 +30,12 @@
             Lang = HerlperSettings.GetLang().PaymentLnag.GetLang();
         }
 
-        public PaymentsPageViewModel(CartViewModel cardViewModel)
+        private readonly IOrderPrinter _orderPrinter;
+        public PaymentsPageViewModel(CartViewModel cardViewModel , IOrderPrinter orderPrinter)
         {
+            _orderPrinter = orderPrinter;
             MethodPayments = new ObservableCollection<MethodPaymentModel>();
-            payments = new ObservableCollection<PaymentModel>();
+            Payments = new ObservableCollection<PaymentModel>();
             _popup = new PaymentPagePopup();
             this.cardViewModel = cardViewModel;
             LoadLang();
@@ -81,6 +85,7 @@
                        App.order.PaymentsPaymentamounts = orderPayments;
                    }
                });
+            await _orderPrinter.PrintAsync(App.order);
             await App.postOrder.PostOrder();
         }
 
@@ -99,9 +104,10 @@
 
         public void Start()
         {
-            MethodPayments.Clear();
-            Payments.Clear();
-
+            /* MethodPayments.Clear();
+            Payments.Clear();*/
+            MethodPayments = new ObservableCollection<MethodPaymentModel>();
+            Payments = new ObservableCollection<PaymentModel>();
             AddGlopalPayments();
             AddPaymentPayment();
 

@@ -109,8 +109,7 @@
 
         public static void SetActionCountProductInSale(Action<int> actionCountProductInSale)
         {
-            if (ActionCountProductInSale == null)
-                ActionCountProductInSale = actionCountProductInSale;
+            ActionCountProductInSale = actionCountProductInSale;
         }
 
         public static void CalcOrderItemCountInOrder()
@@ -119,6 +118,8 @@
             int count = App.order.InventoryOrderProducts.Count;
             ActionCountProductInSale.Invoke(count);
         }
+        public static int GetCount() => App.order.InventoryOrderProducts.Count;
+        
 
 
     }

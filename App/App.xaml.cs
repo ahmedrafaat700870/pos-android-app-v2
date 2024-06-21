@@ -1,4 +1,9 @@
-﻿namespace App
+﻿#if ANDROID
+using XamarinESCUtils.Platforms.Android;
+#endif
+using XamarinESCUtils.Platforms.Common;
+
+namespace App
 {
     public partial class App : Application
     {
@@ -11,6 +16,31 @@
         private static MainPageContentViewViewModel mainPageViewModel;
         private static Calc_Order_item_Detalis CalcOrderItem;
         private static ReadAndWriteFile fileHelper;
+        private static IBlueToothService _blueToothService;
+        private static IEscUtil _escUtil;
+
+        public static IBlueToothService GetBlueToothService()
+        {
+            if (_blueToothService is null)
+            {
+#if ANDROID
+                _blueToothService = new BluetoothService();
+#endif
+            }
+            return _blueToothService; 
+        }
+
+        public static IEscUtil GetEscUtil()
+        {
+            if(_escUtil is null)
+            {
+#if ANDROID
+                _escUtil = new EscUtil();
+#endif
+            }
+            return _escUtil;
+        }
+
 
         public static DataUserRemeberMe DataUserRemeberMe;
 

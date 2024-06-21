@@ -1,4 +1,6 @@
-﻿namespace App.ViewModel
+﻿using App.Services.OrderPrint;
+
+namespace App.ViewModel
 {
     public partial class CartViewModel : ObservableObject
     {
@@ -19,8 +21,10 @@
             Lang = HerlperSettings.GetLang().CartPageLang.GetLang();
         }
 
-        public CartViewModel(ICalacOrderServices orderServices)
+        private readonly IOrderPrinter _printer;
+        public CartViewModel(ICalacOrderServices orderServices , IOrderPrinter printer)
         {
+            _printer = printer;
             _orderServices = orderServices;
             this.Items = new ObservableCollection<CartItemModel>();
             LoadLang();
@@ -91,12 +95,14 @@
                 GlobalTypeId = App.appServices.payments.global_types[1].id,
             };
             PostOrder(cridtPayment);
+
         }
 
         private async void PostOrder(PaymentsPaymentamount payment)
         {
             App.order.PaymentsPaymentamounts.Add(payment);
             ChangeIndicatorStatus();
+            await _printer.PrintAsync(App.order);
             await App.postOrder.PostOrder();
             ChangeIndicatorStatus();
         }

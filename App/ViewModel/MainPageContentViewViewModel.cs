@@ -2,26 +2,33 @@
 {
     public partial class MainPageContentViewViewModel : ObservableObject
     {
+
+       
+        public void SetChangeContainer(Action<ContentView> changeContainer)
+        {
+            this.ChangeContainer = changeContainer;
+        }
+        private Action<ContentView> ChangeContainer;
+
+     
+
         private readonly ISavedOrder savedOrder;
         private IEmpty emptySavedOrders;
-        private readonly HomePage _homePage = null!;
-        private readonly CardPage _cardPage = null!;
+        private HomePage _homePage = null!;
+        private CardPage _cardPage = null!;
         private readonly ClientPage _clientPage = null!;
         private SavedOrderPage savedOrderPage;
         private readonly AddNewClientPage _addNewClientPage = null!;
-        private readonly PaymentsPage _paymentPage = null!;
+        private PaymentsPage _paymentPage = null!;
         private readonly SettignsPage _settingPage = null!;
-       // private readonly RefundPage _refundPage = null!;
         [ObservableProperty] private ContentView mainContentView;
         private Color disActiveColor = new Color(41, 45, 50);
         private Color activeColor = new Color(51, 102, 255);
-
         [ObservableProperty] private Color homeColor;
         [ObservableProperty] private Color settingsColor;
         [ObservableProperty] private Color logoutColor;
         [ObservableProperty] private Color savedPageColor;
         [ObservableProperty] private Color refundPageColor;
-        
         public void SetDefualtColor()
         {
             HomeColor = disActiveColor;
@@ -30,16 +37,26 @@
             SavedPageColor = disActiveColor;
             refundPageColor = disActiveColor;
         }
-        public MainPageContentViewViewModel(HomePage homePage, CardPage cardPage, ClientPage clientpage, AddNewClientPage addNewClientPage, PaymentsPage paymentsPage, SettignsPage settingPage, ISavedOrder savedOrder , SavedOrderPage saveOrderPage)  //, RefundPage refundPage
+        private IApplicationData _applicationData;
+        private readonly IUpdateDataHome _updateDataHome;
+        private readonly HomePageViewModel _homePageViewModel;
+        private readonly CartViewModel _cartViewModel;
+        private readonly PaymentsPageViewModel _paymentPageViewModel;
+
+        public MainPageContentViewViewModel(PaymentsPageViewModel paymentPageViewModel, CartViewModel cartViewModel, HomePageViewModel homePageViewModel, IApplicationData applicationData, IUpdateDataHome updateDataHome, HomePage homePage, CardPage cardPage, ClientPage clientpage, AddNewClientPage addNewClientPage, PaymentsPage paymentsPage, SettignsPage settingPage, ISavedOrder savedOrder, SavedOrderPage saveOrderPage)  //, RefundPage refundPage
         {
+            _paymentPageViewModel = paymentPageViewModel;
+            _cartViewModel = cartViewModel;
+            _homePageViewModel = homePageViewModel;
+            _applicationData = applicationData;
+            _updateDataHome = updateDataHome;
             _homePage = homePage;
             _cardPage = cardPage;
             _clientPage = clientpage;
             _settingPage = settingPage;
             _addNewClientPage = addNewClientPage;
             _paymentPage = paymentsPage;
-            this.savedOrderPage = saveOrderPage ;
-         //   _refundPage = refundPage;
+            this.savedOrderPage = saveOrderPage;
             SetDefualtColor();
             HomeColor = activeColor;
             this.MainContentView = _homePage ?? new ContentView();
@@ -47,24 +64,21 @@
             this.savedOrder = savedOrder;
         }
 
+
         [RelayCommand]
-        private void NavigateToRefundPage()
+        private async void NavigateToHomePage()
         {
-            //_refundPage.LoadData();
-            //this.MainContentView = _refundPage;
             SetDefualtColor();
-            HomeColor = refundPageColor;
-        }
-
-
-        [RelayCommand]
-        private void NavigateToHomePage()
-        {
-            _homePage.LoadLang();
+            _homePage = new HomePage(new HomePageViewModel(_applicationData , _updateDataHome , OrderHeloper.GetCount()));
             this.MainContentView = _homePage;
-            SetDefualtColor();
+            _homePage.LoadDefalut();
+            _homePage.LoadLang();
             HomeColor = activeColor;
         }
+
+
+        public MainPageContentView mainPageContentView { get; set; }
+
         public async Task LoadDataHomeViewModel()
         {
             await _homePage.LoadData();
@@ -72,6 +86,7 @@
         [RelayCommand]
         private void NaviageToCardPage()
         {
+            _cardPage = new CardPage(_cartViewModel);
             _cardPage.LoadLang();
             this.MainContentView = _cardPage;
             _cardPage.LoadDataVM();
@@ -95,6 +110,7 @@
         [RelayCommand]
         private void NavigateToPaymentPage()
         {
+            _paymentPage = new PaymentsPage(_paymentPageViewModel);
             SetDefualtColor();
             _paymentPage.LoadLang();
             this.MainContentView = this._paymentPage;
@@ -160,5 +176,6 @@
                 this.emptySavedOrders = this.savedOrder;
             return emptySavedOrders;
         }
+
     }
 }

@@ -2,66 +2,12 @@
 {
     public partial class HomePageViewModel : ObservableObject
     {
-
-        
-        
-        /* start with update data home */
-
         private readonly IUpdateDataHome _updateDataHome;
-        
-        
-        [ObservableProperty] private bool isActivityIndicatorUpdateVisualise = false;
-        [ObservableProperty] private bool isScrollViewVisible = true;
 
+        private Task LoadDataGroupAsync() => Task.Run(() => LoadDataGroup(null));
 
-        private Task ChangeStatusScrollView()
-        {
-            return Task.Run(() =>
-            {
-                IsScrollViewVisible = !IsScrollViewVisible;
-                IsActivityIndicatorUpdateVisualise = !IsActivityIndicatorUpdateVisualise;
-            });
-        }
-
-
-
-        [RelayCommand]
-        private async Task UpdateDataHome()
-        {
-            await ChangeStatusScrollView();
-            await _updateDataHome.Update();
-            await LoadDataGroupAsync();
-            await ChangeStatusScrollView();
-          
-        }
-
-        private Task LoadDataGroupAsync() => Task.Run(() =>  LoadDataGroup(null) );
-
-        [ObservableProperty] private bool isItemsHeaderVisible = true;
-        [ObservableProperty] private bool isButtonUpdateVisible = false;
-
-
-        public Task ShowItemsHeader() => Task.Run(() =>
-        {
-            IsItemsHeaderVisible = true;
-            IsButtonUpdateVisible = false;
-        });
-
-        public Task ShowButtonUpdate() => Task.Run(() =>
-        {
-            IsItemsHeaderVisible = false;
-            IsButtonUpdateVisible = true;
-        });
-        
-        
-        /* end update data home */
-        
-        
-        
-        
-        
         private readonly IApplicationData _applicationData;
-        public HomePageViewModel(IApplicationData applicationData , IUpdateDataHome updateDataHome)
+        public HomePageViewModel(IApplicationData applicationData, IUpdateDataHome updateDataHome )
         {
             _updateDataHome = updateDataHome;
             prodcuts = new ObservableCollection<ProductModel>();
@@ -69,11 +15,25 @@
             BackFromGroup = new ObservableCollection<BackFromGroupModel>();
             _applicationData = applicationData;
             OrderHeloper.SetActionCountProductInSale(ChangeCountProductInSale);
-            CountOfProductInSale = 0;
             CameraIndicators = new activityIndicatorsHomePage() { IsActive = false, IsItemVisable = true };
             ClientIndicators = new activityIndicatorsHomePage() { IsActive = false, IsItemVisable = true };
             CartIndicators = new activityIndicatorsHomePage() { IsActive = false, IsItemVisable = true };
             LoadLnag();
+            CountOfProductInSale = 0;
+        }
+        public HomePageViewModel(IApplicationData applicationData, IUpdateDataHome updateDataHome , int countProductInSale)
+        {
+            _updateDataHome = updateDataHome;
+            prodcuts = new ObservableCollection<ProductModel>();
+            groups = new ObservableCollection<GroupModel>();
+            BackFromGroup = new ObservableCollection<BackFromGroupModel>();
+            _applicationData = applicationData;
+            OrderHeloper.SetActionCountProductInSale(ChangeCountProductInSale);
+            CameraIndicators = new activityIndicatorsHomePage() { IsActive = false, IsItemVisable = true };
+            ClientIndicators = new activityIndicatorsHomePage() { IsActive = false, IsItemVisable = true };
+            CartIndicators = new activityIndicatorsHomePage() { IsActive = false, IsItemVisable = true };
+            LoadLnag();
+            CountOfProductInSale = countProductInSale;
         }
         public void SetLable(Label label)
         {
@@ -129,8 +89,6 @@
             });
         }
 
-        [ObservableProperty]
-        private bool _loading;
 
         [ObservableProperty]
         private ObservableCollection<ProductModel> prodcuts;
@@ -142,6 +100,8 @@
         private string seachBar;
         [ObservableProperty]
         private int countOfProductInSale;
+
+        public int GetCountProductInSale() => CountOfProductInSale;
         private void ChangeCountProductInSale(int count)
         {
             CountOfProductInSale = count;
@@ -153,18 +113,39 @@
             Groups.Clear();
             BackFromGroup.Clear();
         }
-        private void LoadDataGroup(int? groupId)
+        private IDispatcher dispatcher;
+        public void AddDispatcher(IDispatcher dispatcher)
+        {
+            this.dispatcher = dispatcher;
+        }
+        public void LoadDataGroupFirstTime()
+        {
+            DataGroups.Clear();
+            LoadDataGroup(null);
+        }
+
+        public void LoadGroupFirstTime()
+        {
+            DataGroups.Clear();
+            LoadDataGroup(null);
+        }
+
+
+
+        public void LoadDataGroup(int? groupId)
         {
             DataGroups.Push(groupId);
             clearProductsAndGroups();
 
-            var _products = App.appServices.products.products.Where(x => x.group == groupId);
-            foreach (var product in _products)
-                Prodcuts.Add(new ProductModel(product));
 
             var _groups = App.appServices.products.product_groups.Where(x => x.parent == groupId);
             foreach (var group in _groups)
                 Groups.Add(new GroupModel(group, LoadDataGroup));
+
+
+            var _products = App.appServices.products.products.Where(x => x.group == groupId);
+            foreach (var product in _products)
+                Prodcuts.Add(new ProductModel(product));
 
             if (groupId is null) return;
             BackFromGroup.Add(new BackFromGroupModel(BackToGroup));
@@ -221,6 +202,14 @@
             RessetDataGroups();
             LoadDataGroup(null);
         }
+
+        [RelayCommand]
+        private async void Search()
+        {
+                ChangeSeachBar();
+            
+        }
+
         private void SeachByName()
         {
             RessetDataGroups();
@@ -304,7 +293,6 @@
         [ObservableProperty]
         private activityIndicatorsHomePage cartIndicators;
     }
-
 
     public partial class activityIndicatorsHomePage : ObservableObject
     {

@@ -11,6 +11,7 @@
         public int SaclePattern { get; set; } 
         public int ScaleDightOfPrice { get; set; } 
         public int ScaleDigthOfWehight { get; set; }
+        public string Printer { get; set; } = string.Empty;
         public int EndCode { get; set; }
     }
 }

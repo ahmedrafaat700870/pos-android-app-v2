@@ -1,4 +1,6 @@
-﻿namespace App;
+﻿
+
+namespace App;
 public static class MauiProgram
 {
     public static MauiApp CreateMauiApp()
@@ -14,8 +16,6 @@ public static class MauiProgram
             {
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                 fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-
-
                 fonts.AddFont("Brands-Regular-400.otf", "FAS");
                 fonts.AddFont("Free-Regular-400.otf", "FAS");
                 fonts.AddFont("Free-Solid-900.otf", "FAS");
@@ -50,26 +50,26 @@ public static class MauiProgram
         builder.Services.AddSingleton<ISavedOrder, SavedOrderV2>();
         builder.Services.AddSingleton<SavedOrderPage>();
         builder.Services.AddSingleton<SavedOrderViewModel>();
-        builder.Services.AddSingleton<IRefundServices, RefundServices>();
-        builder.Services.AddSingleton<IDataRefundServices<InventoryRefund>, Refund_RefundServices>();
-        builder.Services.AddSingleton<IDataRefundServices<InventoryOrder>, Refund_OrderServices>();
-        builder.Services.AddSingleton<Refund_OrderViewModel>();
-        builder.Services.AddSingleton<Refund_RefundViewModel>();
-        builder.Services.AddSingleton<Refund_OrderView>();
-        builder.Services.AddSingleton<Refund_RefundView>();
-        
         builder.Services.AddScoped<IUpdateDataHome, UpdateDataHome>();
-        //builder.Services.AddSingleton<RefundPage>();
-        builder.Services.AddSingleton<BaseRefundViewModel>();
+        builder.Services.AddSingleton<ICreateNewCustomer , CreateNewCustomer>();
+        builder.Services.AddSingleton<PrintService>();
+        builder.Services.AddSingleton<IPrinter , Printer>();
+        builder.Services.AddSingleton<IOrderPrinter, OrderPrinter>();
+
+
+
 #if DEBUG
         builder.Logging.AddDebug();
 #endif
         Microsoft.Maui.Handlers.EntryHandler.Mapper.AppendToMapping(nameof(Entry), (handler, view) =>
         {
 #if ANDROID
+            
             handler.PlatformView.SetBackgroundColor(Android.Graphics.Color.Transparent);
 #endif
         });
+
+        GlobalFontSettings.FontResolver = new FontResolver();
 
 
         return builder.Build();

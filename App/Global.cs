@@ -83,5 +83,13 @@ global using App.Views.Refund.OrderPage;
 global using App.ViewModel.Refund.Order_Page;
 global using App.ViewModel.Refund.RefundPage;
 global using App.Services.UpdateData;
+global using App.Services.CreatNewCustomer;
+global using App.Services.PrinterServices;
+global using App.Services.PrinterServices.OrderPrinter;
+global using App.Services;
+global using App.Services.OrderPrint;
+global using PdfSharp.Fonts;
+
+
 
 

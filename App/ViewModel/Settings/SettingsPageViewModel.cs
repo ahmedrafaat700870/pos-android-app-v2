@@ -1,7 +1,12 @@
-﻿namespace App.ViewModel.Settings
+﻿using XamarinESCUtils.Model;
+using XamarinESCUtils.Platforms.Common;
+
+namespace App.ViewModel.Settings
 {
     public partial class SettingsPageViewModel : ObservableObject
     {
+
+        private readonly IBlueToothService _blueToothService;
         private string[] pattern13 =
         [
             "1-5-6-1 price",
@@ -59,22 +64,33 @@
 
         [ObservableProperty] private SettingsPageLang lang;
 
+        [ObservableProperty] private List<string> printers;
         public void LoadLang()
         {
             Lang = HerlperSettings.GetLang().SettingsPageLang.GetLang();
             pattern13 = Lang.Pattern13;
         }
-        public SettingsPageViewModel()
+        private PrintService _printService;
+        public SettingsPageViewModel(PrintService printService)
         {
-            LoadData();
+            _blueToothService = App.GetBlueToothService();
+            //LoadData();
             items = new List<string>();
             discountType = new List<string>();
             scalesTypes = new List<string>();
             scalePatterns = pattern13.ToList();
             IsNumberOfDightPriceVisable = true;
             IsNumberOfDightWeightVisable = false;
+            _printService = printService;
+            this.Printer = "printer";
         }
 
+        private List<BluetoothInfo> bluetoothInfos = new List<BluetoothInfo>();
+
+        [ObservableProperty] private string printer;
+        [ObservableProperty] private int printerIndex;
+        private string PrinterName;
+       
         public void LoadData()
         {
             LoadLang();
@@ -88,7 +104,7 @@
             
             NumberOfDightprice = _model.ScaleDightOfPrice;
             NumberOfDightWeight = _model.ScaleDigthOfWehight;
-
+            this.PrinterName = _model.Printer;
             if (_model.Scale == 18)
             {
                 SelectedScaleType = 1;
@@ -97,8 +113,10 @@
 
             SelectedScalePattern = _model.SaclePattern - 1;
             ChagedNumberOfPriceAndWheightVisiable();
+            //Printers = _printService.GetDeviceList().ToList();
+            bluetoothInfos = _blueToothService.GetDeviceList().ToList();
+            Printers = bluetoothInfos.Select(x => x.Name).ToList();
         }
-
 
 
         private void ChagedNumberOfPriceAndWheightVisiable()
@@ -120,6 +138,7 @@
             }
         }
 
+       
         private SettingsModel GetSettingModle()
         {
             return App.appServices.GetAppSettings();
@@ -133,6 +152,12 @@
         private void ClickCancel()
         {
             GoHome();
+        }
+
+
+        public void ChangePrinter()
+        {
+            PrinterName = this.Printers[PrinterIndex];
         }
 
         [RelayCommand]
@@ -164,6 +189,12 @@
             _model.ScaleDightOfPrice = 0;
             _model.ScaleDigthOfWehight = NumberOfDightWeight;
             _model.ScaleDightOfPrice = NumberOfDightprice;
+            if (!string.IsNullOrEmpty(PrinterName)) 
+            {
+                var b = this.bluetoothInfos.Where(x => x.Name == PrinterName).FirstOrDefault();
+                var data = JsonConvert.SerializeObject(b);
+                _model.Printer = data;
+            }
             if (SelectedScaleType == 1)
                 _model.Scale = 18;
 

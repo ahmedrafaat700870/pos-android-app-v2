@@ -1,16 +1,11 @@
 ﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace App.Services.Customer
 {
     public class PostNewCustomer : IPostNewCustomer
     {
-        private readonly ICRUDHttpServices _services;
-        public PostNewCustomer(ICRUDHttpServices services)
+        private readonly ICreateNewCustomer _services;
+        public PostNewCustomer(ICreateNewCustomer services)
         {
             _services = services;
         }
@@ -29,8 +24,8 @@ namespace App.Services.Customer
 
             try
             {
-                await _services.PostAll(URLS.post_account_customers, new List<Account_Client_Post_Model> { customer });
-            } catch
+                await _services.Create(customer);
+            } catch (Exception ex)
             {
                 return 1;
             }

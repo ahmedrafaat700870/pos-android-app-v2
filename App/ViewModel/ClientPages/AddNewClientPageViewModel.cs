@@ -93,6 +93,7 @@
             App.helperNavigation.NavigateToHome();
         }
 
+       
         [RelayCommand]
         private async void AddClick()
         {
@@ -101,7 +102,7 @@
             if (!isValid || string.IsNullOrEmpty(Name))
                 return;
 
-            int status = await _postCustomerServices.PostNewUser(Name , Email , Phone , Vat_registrations_number, isClient);
+            int status = await _postCustomerServices.PostNewUser(Name , Email , Phone , Vat_registrations_number, IsClient);
 
             var lang = HerlperSettings.GetLang().ToastLang.GetLang();
             if(status == 0)

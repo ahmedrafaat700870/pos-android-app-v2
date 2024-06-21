@@ -8,6 +8,7 @@
              x:Class="App.Views.MainPageContentView"
              x:DataType="vm:MainPageContentViewViewModel"
              xmlns:mct="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"
+             xmlns:tookit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              >
     <Page.Behaviors>
         <mct:StatusBarBehavior StatusBarColor="#E0E9F4" />
@@ -18,8 +19,8 @@
 
             <ScrollView Orientation="Horizontal" BackgroundColor="Transparent" HorizontalOptions="Center"  >
                 <Grid ColumnSpacing="50"   ColumnDefinitions="* , * , * , *" VerticalOptions="Center" >
-                 
-                    <ImageButton Grid.Column="0" WidthRequest="30"  Command="{Binding NavigateToHomePageCommand}" >
+                    <ActivityIndicator x:Name="activityHome" Grid.Column="0" WidthRequest="30"  />
+                    <ImageButton x:Name="home"  Grid.Column="0" WidthRequest="30"  Command="{Binding NavigateToHomePageCommand}" >
                         <ImageButton.Source>
                             <FontImageSource  FontFamily="FAS" Glyph="{x:Static helper:FontAwosomeHelper.House}" Color="{Binding HomeColor}" />
                         </ImageButton.Source>
@@ -34,16 +35,11 @@
                             <FontImageSource  FontFamily="FAS" Glyph="{x:Static helper:FontAwosomeHelper.ArrowsSpin}" Color="{Binding SavedPageColor}" />
                         </ImageButton.Source>
                     </ImageButton>
-                    <ImageButton Grid.Column="3" WidthRequest="30"  Command="{Binding LogoutCommand}">
+                    <ImageButton  Grid.Column="3" WidthRequest="30"  Command="{Binding LogoutCommand}">
                         <ImageButton.Source>
                             <FontImageSource  FontFamily="FAS" Glyph="{x:Static helper:FontAwosomeHelper.ArrowRightFromBracket}" Color="{Binding LogoutColor}" />
                         </ImageButton.Source>
                     </ImageButton>
-                    <!--<ImageButton Grid.Column="3" WidthRequest="30"  Command="{Binding NavigateToRefundPageCommand}">
-                        <ImageButton.Source>
-                            <FontImageSource  FontFamily="FAS" Glyph="{x:Static helper:FontAwosomeHelper.SquareFull}" Color="{Binding RefundPageColor}" />
-                        </ImageButton.Source>
-                    </ImageButton>-->
                 </Grid>
             </ScrollView>
         </Border>

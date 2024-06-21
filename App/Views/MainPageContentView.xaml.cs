@@ -5,9 +5,17 @@ public partial class MainPageContentView : ContentPage
     public MainPageContentView(MainPageContentViewViewModel vm)
     {
         _vm = vm;
+        _vm.mainPageContentView = this;
         BindingContext = _vm;
+        _vm.SetChangeContainer(ChangeDataHome);
         InitializeComponent();
     }
+
+    private void ChangeDataHome(ContentView contentView)
+    {
+        this.container.Content = contentView;
+    }
+
 
     public async void addData()
     {

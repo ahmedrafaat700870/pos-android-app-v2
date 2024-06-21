@@ -46,4 +46,8 @@ public partial class SettignsPage : ContentView
         _vm.ValidateDightOfWeight();
     }
 
+    private void Picker_SelectedIndexChanged_1(object sender, EventArgs e)
+    {
+        _vm.ChangePrinter();
+    }
 }

@@ -10,7 +10,7 @@
             {
                 client.DefaultRequestHeaders.Add("Authorization", "Token " + token);
                 client.DefaultRequestHeaders.Add("Accept", "application/json");
-                App.order.OrderDate = DateTime.Now;
+                
                 Order_Post_Model order = convertOrder();
                 var objectData = JsonConvert.SerializeObject(new List<Order_Post_Model>() { order });
                 var content = new StringContent(objectData, encoding: Encoding.UTF8, "application/json");
