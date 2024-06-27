@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace App.Helpers
+﻿namespace App.Helpers
 {
     public class HelperTaxIncluded
     {
@@ -14,7 +8,6 @@ namespace App.Helpers
                 TaxInclude(price , orderItem);
              else
                 TaxNotInvluded(price , orderItem);
-                
         }
 
         private static void TaxInclude(decimal price, InventoryOrderitem orderItem)

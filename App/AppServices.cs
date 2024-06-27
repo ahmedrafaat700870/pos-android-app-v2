@@ -68,7 +68,27 @@ namespace App
 
             if(Settings is null)
             {
-                var data = JsonConvert.DeserializeObject<SettingsModel>(App.GetReadAndWriteFile().ReadTextFile("settings"));
+                // get data from file 
+                string data = App.GetReadAndWriteFile().ReadTextFile("Settings");
+
+                if(string.IsNullOrEmpty(data))
+                    Settings = new SettingsModel()
+                    {
+                        DiscountSelectedIndex = 0,
+                        LangSelectedIndex = 1,
+                        SaclePattern = 4,
+                        Scale = 13,
+                        ScaleDightOfPrice = 3,
+                        ScaleDigthOfWehight = 3,
+                        StarterSacleCode = 22,
+                        EndCode = 1,
+                        Printer = string.Empty,
+                    };
+                 else
+                    Settings = JsonConvert.DeserializeObject<SettingsModel>(data);
+
+
+                /*var data = JsonConvert.DeserializeObject<SettingsModel>(App.GetReadAndWriteFile().ReadTextFile("settings"));
                 if (data is null )
                 {
                     SettingsModel settingsModel = new SettingsModel()
@@ -86,7 +106,7 @@ namespace App
                     App.GetReadAndWriteFile().WirteTextToFile(content, "settings");
                     data = settingsModel;
                 }
-                Settings = data;
+                Settings = data;*/
             }
 
             return Settings;

@@ -13,12 +13,18 @@ public partial class SettignsPage : ContentView
 	public void LoadData()
 	{
 		_vm.LoadData();
-	}
+        this.lang.SelectedIndex = _vm.SelectedIndexLang;
+        this.discount.SelectedIndex = _vm.SelectedIndexDiscount;
+        this.dightOfPrice.Text = _vm._model.ScaleDightOfPrice.ToString();
+        this.dightOfWeight.Text = _vm._model.ScaleDigthOfWehight.ToString();
+    }
 
 
     public void LoadLang()
     {
+
         _vm.LoadLang();
+     
     }
 
     private void Picker_SelectedIndexChanged(object sender, EventArgs e)

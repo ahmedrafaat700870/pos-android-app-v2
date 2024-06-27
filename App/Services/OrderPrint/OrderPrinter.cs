@@ -1,6 +1,4 @@
-﻿
-
-namespace App.Services.OrderPrint
+﻿namespace App.Services.OrderPrint
 {
     public class OrderPrinter : IOrderPrinter
     {
@@ -75,7 +73,14 @@ namespace App.Services.OrderPrint
             // for test qrcode
             model.qrCode = "total = 100.00 , subtotal = 86.00 , tax = 14.00";
 
-            await _printer.PrintAsync(model);
+            try
+            {
+                await _printer.PrintAsync(model);
+            }
+            catch (Exception ex) 
+            {
+                ToastHelper.Show("Printing Error");
+            }
 
 
         }

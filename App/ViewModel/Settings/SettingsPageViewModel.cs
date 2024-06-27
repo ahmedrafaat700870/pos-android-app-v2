@@ -1,4 +1,5 @@
-﻿using XamarinESCUtils.Model;
+﻿using System.Security.Cryptography.X509Certificates;
+using XamarinESCUtils.Model;
 using XamarinESCUtils.Platforms.Common;
 
 namespace App.ViewModel.Settings
@@ -33,11 +34,14 @@ namespace App.ViewModel.Settings
 
         [ObservableProperty]
         private int selectedIndexLang;
+
+        [ObservableProperty] private string selectedLangItem;
+        
         [ObservableProperty]
         private int selectedIndexDiscount;
         [ObservableProperty]
         private List<string> discountType;
-        private SettingsModel _model;
+        public SettingsModel _model;
 
         [ObservableProperty]
         private int starterCode;
@@ -70,8 +74,7 @@ namespace App.ViewModel.Settings
             Lang = HerlperSettings.GetLang().SettingsPageLang.GetLang();
             pattern13 = Lang.Pattern13;
         }
-        private PrintService _printService;
-        public SettingsPageViewModel(PrintService printService)
+        public SettingsPageViewModel()
         {
             _blueToothService = App.GetBlueToothService();
             //LoadData();
@@ -81,7 +84,6 @@ namespace App.ViewModel.Settings
             scalePatterns = pattern13.ToList();
             IsNumberOfDightPriceVisable = true;
             IsNumberOfDightWeightVisable = false;
-            _printService = printService;
             this.Printer = "printer";
         }
 
@@ -90,7 +92,7 @@ namespace App.ViewModel.Settings
         [ObservableProperty] private string printer;
         [ObservableProperty] private int printerIndex;
         private string PrinterName;
-       
+
         public void LoadData()
         {
             LoadLang();
@@ -101,10 +103,9 @@ namespace App.ViewModel.Settings
             SelectedScaleType = 0;
             SelectedIndexDiscount = _model.DiscountSelectedIndex;
 
-            
+
             NumberOfDightprice = _model.ScaleDightOfPrice;
             NumberOfDightWeight = _model.ScaleDigthOfWehight;
-            this.PrinterName = _model.Printer;
             if (_model.Scale == 18)
             {
                 SelectedScaleType = 1;
@@ -114,11 +115,24 @@ namespace App.ViewModel.Settings
             SelectedScalePattern = _model.SaclePattern - 1;
             ChagedNumberOfPriceAndWheightVisiable();
             //Printers = _printService.GetDeviceList().ToList();
-            bluetoothInfos = _blueToothService.GetDeviceList().ToList();
-            Printers = bluetoothInfos.Select(x => x.Name).ToList();
+            try
+            {
+                bluetoothInfos = _blueToothService.GetDeviceList().ToList();
+            } catch
+            {
+
+            }
+                Printers = bluetoothInfos.Select(x => x.Name).ToList();
+            if (!string.IsNullOrEmpty(_model.Printer))
+            {
+                var _printer = JsonConvert.DeserializeObject<BluetoothInfo>(_model.Printer);
+                this.PrinterName = _printer?.Name ?? string.Empty;
+            }
+            else
+                this.PrinterName = string.Empty;
         }
 
-
+       
         private void ChagedNumberOfPriceAndWheightVisiable()
         {
             if (SelectedScaleType == 1)
@@ -138,7 +152,7 @@ namespace App.ViewModel.Settings
             }
         }
 
-       
+
         private SettingsModel GetSettingModle()
         {
             return App.appServices.GetAppSettings();
@@ -189,7 +203,7 @@ namespace App.ViewModel.Settings
             _model.ScaleDightOfPrice = 0;
             _model.ScaleDigthOfWehight = NumberOfDightWeight;
             _model.ScaleDightOfPrice = NumberOfDightprice;
-            if (!string.IsNullOrEmpty(PrinterName)) 
+            if (!string.IsNullOrEmpty(PrinterName))
             {
                 var b = this.bluetoothInfos.Where(x => x.Name == PrinterName).FirstOrDefault();
                 var data = JsonConvert.SerializeObject(b);
@@ -201,7 +215,7 @@ namespace App.ViewModel.Settings
             _model.SaclePattern = SelectedScalePattern + 1;
 
             string content = JsonConvert.SerializeObject(_model);
-            App.GetReadAndWriteFile().WirteTextToFile(content, lang.Settings);
+            App.GetReadAndWriteFile().WirteTextToFile(content, "Settings");
             ShowMessage(lang.SuccessAddsettings);
             App.appServices.SetAppSettings(_model);
 

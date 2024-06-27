@@ -41,10 +41,16 @@
             CheckFromLastUserRemeberMe();
         }
 
+
+        private void ReomveDataUser()
+        {
+            App.DataUserRemeberMe.ReomveLastUser();
+        }
+
         private void CheckFromLastUserRemeberMe()
         {
-            if (!App.DataUserRemeberMe.isContainsDataUser()) return;
 
+            if (!App.DataUserRemeberMe.isContainsDataUser()) return;
             var DataUser = App.DataUserRemeberMe.DataUser;
             IsRememberMeChecked = App.DataUserRemeberMe.DataUser.rememberMe;
             if (DataUser.rememberMe)
@@ -77,7 +83,7 @@
                 Uri uri = new Uri(url);
                 await Browser.Default.OpenAsync(uri, BrowserLaunchMode.SystemPreferred);
             }
-            catch (Exception ex)
+            catch (Exception ex) 
             {
                 // An unexpected error occurred. No browser may be installed on the device.
             }
@@ -92,7 +98,6 @@
         private async void Login()
         {
             // check from internet .
-
             try
             {
                 await ChangeStatusLogin();

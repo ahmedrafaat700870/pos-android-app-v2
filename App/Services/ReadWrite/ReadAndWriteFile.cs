@@ -1,4 +1,7 @@
-﻿namespace App.Services.ReadWrite
+﻿using System.IO;
+using System;
+using Microsoft.Maui.Storage;
+namespace App.Services.ReadWrite
 {
     public class ReadAndWriteFile
     {
@@ -6,6 +9,9 @@
         {
             // Write the file content to the app data directory  
             string targetFile = System.IO.Path.Combine(FileSystem.Current.AppDataDirectory, targetFileName);
+            if(!File.Exists(targetFile)) 
+                File.Create(targetFile).Close();
+            
             using FileStream outputStream = System.IO.File.OpenWrite(targetFile);
             outputStream.SetLength(0);
             using StreamWriter streamWriter = new StreamWriter(outputStream );
@@ -54,6 +60,14 @@
             using FileStream InputStream = System.IO.File.OpenRead(targetFile);
             using StreamReader reader = new StreamReader(InputStream);
             return await reader.ReadToEndAsync();
+        }
+
+     
+        public async Task DeleteFile(string fileName)
+        {
+            string targetFile = System.IO.Path.Combine(FileSystem.Current.AppDataDirectory, fileName);
+            if(File.Exists(targetFile))
+                File.Delete(targetFile);
         }
     }
 }

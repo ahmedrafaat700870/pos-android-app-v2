@@ -3,36 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\TEFA\\Desktop\\new App\\Android App\\pos-android-app-main\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{BF6223DC-B82E-4EB4-886D-FD4C8E3A04F3}|App\\App.csproj|c:\\users\\tefa\\desktop\\new app\\android app\\pos-android-app-main\\app\\services\\printerservices\\orderprinter\\printer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BF6223DC-B82E-4EB4-886D-FD4C8E3A04F3}|App\\App.csproj|solutionrelative:app\\services\\printerservices\\orderprinter\\printer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{BF6223DC-B82E-4EB4-886D-FD4C8E3A04F3}|App\\App.csproj|c:\\users\\tefa\\desktop\\new app\\android app\\pos-android-app-main\\app\\services\\scales\\scale18services.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BF6223DC-B82E-4EB4-886D-FD4C8E3A04F3}|App\\App.csproj|solutionrelative:app\\services\\scales\\scale18services.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BF6223DC-B82E-4EB4-886D-FD4C8E3A04F3}|App\\App.csproj|c:\\users\\tefa\\desktop\\new app\\android app\\pos-android-app-main\\app\\mauiprogram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BF6223DC-B82E-4EB4-886D-FD4C8E3A04F3}|App\\App.csproj|solutionrelative:app\\mauiprogram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{BF6223DC-B82E-4EB4-886D-FD4C8E3A04F3}|App\\App.csproj|c:\\users\\tefa\\desktop\\new app\\android app\\pos-android-app-main\\app\\viewmodel\\homepageviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BF6223DC-B82E-4EB4-886D-FD4C8E3A04F3}|App\\App.csproj|solutionrelative:app\\viewmodel\\homepageviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BF6223DC-B82E-4EB4-886D-FD4C8E3A04F3}|App\\App.csproj|c:\\users\\tefa\\desktop\\new app\\android app\\pos-android-app-main\\app\\services\\printerservices\\orderprinter\\iprinter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BF6223DC-B82E-4EB4-886D-FD4C8E3A04F3}|App\\App.csproj|solutionrelative:app\\services\\printerservices\\orderprinter\\iprinter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{BF6223DC-B82E-4EB4-886D-FD4C8E3A04F3}|App\\App.csproj|c:\\users\\tefa\\desktop\\new app\\android app\\pos-android-app-main\\app\\services\\scales\\scale13services.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BF6223DC-B82E-4EB4-886D-FD4C8E3A04F3}|App\\App.csproj|solutionrelative:app\\services\\scales\\scale13services.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BF6223DC-B82E-4EB4-886D-FD4C8E3A04F3}|App\\App.csproj|c:\\users\\tefa\\desktop\\new app\\android app\\pos-android-app-main\\app\\services\\printerservices\\printservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BF6223DC-B82E-4EB4-886D-FD4C8E3A04F3}|App\\App.csproj|solutionrelative:app\\services\\printerservices\\printservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{BF6223DC-B82E-4EB4-886D-FD4C8E3A04F3}|App\\App.csproj|c:\\users\\tefa\\desktop\\new app\\android app\\pos-android-app-main\\app\\views\\camerapage\\cameraview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{BF6223DC-B82E-4EB4-886D-FD4C8E3A04F3}|App\\App.csproj|solutionrelative:app\\views\\camerapage\\cameraview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BF6223DC-B82E-4EB4-886D-FD4C8E3A04F3}|App\\App.csproj|c:\\users\\tefa\\desktop\\new app\\android app\\pos-android-app-main\\app\\services\\orderprint\\orderprinter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BF6223DC-B82E-4EB4-886D-FD4C8E3A04F3}|App\\App.csproj|solutionrelative:app\\services\\orderprint\\orderprinter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BF6223DC-B82E-4EB4-886D-FD4C8E3A04F3}|App\\App.csproj|c:\\users\\tefa\\desktop\\new app\\android app\\pos-android-app-main\\app\\services\\printerservices\\orderprinter\\printermodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BF6223DC-B82E-4EB4-886D-FD4C8E3A04F3}|App\\App.csproj|solutionrelative:app\\services\\printerservices\\orderprinter\\printermodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BF6223DC-B82E-4EB4-886D-FD4C8E3A04F3}|App\\App.csproj|c:\\users\\tefa\\desktop\\new app\\android app\\pos-android-app-main\\app\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BF6223DC-B82E-4EB4-886D-FD4C8E3A04F3}|App\\App.csproj|solutionrelative:app\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BF6223DC-B82E-4EB4-886D-FD4C8E3A04F3}|App\\App.csproj|c:\\users\\tefa\\desktop\\new app\\android app\\pos-android-app-main\\app\\platforms\\android\\printservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BF6223DC-B82E-4EB4-886D-FD4C8E3A04F3}|App\\App.csproj|solutionrelative:app\\platforms\\android\\printservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{BF6223DC-B82E-4EB4-886D-FD4C8E3A04F3}|App\\App.csproj|c:\\users\\tefa\\desktop\\new app\\android app\\pos-android-app-main\\app\\views\\camerapage\\cameraview.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
+      "RelativeMoniker": "D:0:0:{BF6223DC-B82E-4EB4-886D-FD4C8E3A04F3}|App\\App.csproj|solutionrelative:app\\views\\camerapage\\cameraview.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,131 +30,71 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "PrintService.cs",
-              "DocumentMoniker": "C:\\Users\\TEFA\\Desktop\\new App\\Android App\\pos-android-app-main\\App\\Services\\PrinterServices\\PrintService.cs",
-              "RelativeDocumentMoniker": "App\\Services\\PrinterServices\\PrintService.cs",
-              "ToolTip": "C:\\Users\\TEFA\\Desktop\\new App\\Android App\\pos-android-app-main\\App\\Services\\PrinterServices\\PrintService.cs",
-              "RelativeToolTip": "App\\Services\\PrinterServices\\PrintService.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAAAAAA",
+              "DocumentIndex": 0,
+              "Title": "Scale18Services.cs",
+              "DocumentMoniker": "C:\\Users\\TEFA\\Desktop\\new App\\Android App\\pos-android-app-main\\App\\Services\\Scales\\Scale18Services.cs",
+              "RelativeDocumentMoniker": "App\\Services\\Scales\\Scale18Services.cs",
+              "ToolTip": "C:\\Users\\TEFA\\Desktop\\new App\\Android App\\pos-android-app-main\\App\\Services\\Scales\\Scale18Services.cs",
+              "RelativeToolTip": "App\\Services\\Scales\\Scale18Services.cs",
+              "ViewState": "AQIAAEUAAAAAAAAAAAApwGIAAABAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-21T01:48:59.001Z",
+              "WhenOpened": "2024-06-27T04:05:28.085Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "IPrinter.cs",
-              "DocumentMoniker": "C:\\Users\\TEFA\\Desktop\\new App\\Android App\\pos-android-app-main\\App\\Services\\PrinterServices\\OrderPrinter\\IPrinter.cs",
-              "RelativeDocumentMoniker": "App\\Services\\PrinterServices\\OrderPrinter\\IPrinter.cs",
-              "ToolTip": "C:\\Users\\TEFA\\Desktop\\new App\\Android App\\pos-android-app-main\\App\\Services\\PrinterServices\\OrderPrinter\\IPrinter.cs",
-              "RelativeToolTip": "App\\Services\\PrinterServices\\OrderPrinter\\IPrinter.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Title": "Scale13Services.cs",
+              "DocumentMoniker": "C:\\Users\\TEFA\\Desktop\\new App\\Android App\\pos-android-app-main\\App\\Services\\Scales\\Scale13Services.cs",
+              "RelativeDocumentMoniker": "App\\Services\\Scales\\Scale13Services.cs",
+              "ToolTip": "C:\\Users\\TEFA\\Desktop\\new App\\Android App\\pos-android-app-main\\App\\Services\\Scales\\Scale13Services.cs",
+              "RelativeToolTip": "App\\Services\\Scales\\Scale13Services.cs",
+              "ViewState": "AQIAABIAAAAAAAAAAAAowCoAAAA7AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-21T01:48:47.123Z",
+              "WhenOpened": "2024-06-27T01:51:29.124Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "CameraView.xaml",
+              "DocumentMoniker": "C:\\Users\\TEFA\\Desktop\\new App\\Android App\\pos-android-app-main\\App\\Views\\CameraPage\\CameraView.xaml",
+              "RelativeDocumentMoniker": "App\\Views\\CameraPage\\CameraView.xaml",
+              "ToolTip": "C:\\Users\\TEFA\\Desktop\\new App\\Android App\\pos-android-app-main\\App\\Views\\CameraPage\\CameraView.xaml",
+              "RelativeToolTip": "App\\Views\\CameraPage\\CameraView.xaml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAAZAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-06-26T23:23:14.146Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "MauiProgram.cs",
-              "DocumentMoniker": "C:\\Users\\TEFA\\Desktop\\new App\\Android App\\pos-android-app-main\\App\\MauiProgram.cs",
-              "RelativeDocumentMoniker": "App\\MauiProgram.cs",
-              "ToolTip": "C:\\Users\\TEFA\\Desktop\\new App\\Android App\\pos-android-app-main\\App\\MauiProgram.cs",
-              "RelativeToolTip": "App\\MauiProgram.cs",
-              "ViewState": "AQIAABMAAAAAAAAAAAAgwDYAAAAIAAAA",
+              "Title": "HomePageViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\TEFA\\Desktop\\new App\\Android App\\pos-android-app-main\\App\\ViewModel\\HomePageViewModel.cs",
+              "RelativeDocumentMoniker": "App\\ViewModel\\HomePageViewModel.cs",
+              "ToolTip": "C:\\Users\\TEFA\\Desktop\\new App\\Android App\\pos-android-app-main\\App\\ViewModel\\HomePageViewModel.cs",
+              "RelativeToolTip": "App\\ViewModel\\HomePageViewModel.cs",
+              "ViewState": "AQIAAJ8AAAAAAAAAAAAtwLoAAAAUAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-20T23:13:06.304Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Printer.cs",
-              "DocumentMoniker": "C:\\Users\\TEFA\\Desktop\\new App\\Android App\\pos-android-app-main\\App\\Services\\PrinterServices\\OrderPrinter\\Printer.cs",
-              "RelativeDocumentMoniker": "App\\Services\\PrinterServices\\OrderPrinter\\Printer.cs",
-              "ToolTip": "C:\\Users\\TEFA\\Desktop\\new App\\Android App\\pos-android-app-main\\App\\Services\\PrinterServices\\OrderPrinter\\Printer.cs",
-              "RelativeToolTip": "App\\Services\\PrinterServices\\OrderPrinter\\Printer.cs",
-              "ViewState": "AQIAABoAAAAAAAAAAAAMwCIAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-20T04:52:34.955Z",
+              "WhenOpened": "2024-06-26T23:18:37.386Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "OrderPrinter.cs",
-              "DocumentMoniker": "C:\\Users\\TEFA\\Desktop\\new App\\Android App\\pos-android-app-main\\App\\Services\\OrderPrint\\OrderPrinter.cs",
-              "RelativeDocumentMoniker": "App\\Services\\OrderPrint\\OrderPrinter.cs",
-              "ToolTip": "C:\\Users\\TEFA\\Desktop\\new App\\Android App\\pos-android-app-main\\App\\Services\\OrderPrint\\OrderPrinter.cs",
-              "RelativeToolTip": "App\\Services\\OrderPrint\\OrderPrinter.cs",
-              "ViewState": "AQIAABgAAAAAAAAAAAAowBUAAAAdAAAA",
+              "Title": "CameraView.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\TEFA\\Desktop\\new App\\Android App\\pos-android-app-main\\App\\Views\\CameraPage\\CameraView.xaml.cs",
+              "RelativeDocumentMoniker": "App\\Views\\CameraPage\\CameraView.xaml.cs",
+              "ToolTip": "C:\\Users\\TEFA\\Desktop\\new App\\Android App\\pos-android-app-main\\App\\Views\\CameraPage\\CameraView.xaml.cs",
+              "RelativeToolTip": "App\\Views\\CameraPage\\CameraView.xaml.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAEAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-21T01:51:18.137Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "PrintService.cs",
-              "DocumentMoniker": "C:\\Users\\TEFA\\Desktop\\new App\\Android App\\pos-android-app-main\\App\\Platforms\\Android\\PrintService.cs",
-              "RelativeDocumentMoniker": "App\\Platforms\\Android\\PrintService.cs",
-              "ToolTip": "C:\\Users\\TEFA\\Desktop\\new App\\Android App\\pos-android-app-main\\App\\Platforms\\Android\\PrintService.cs",
-              "RelativeToolTip": "App\\Platforms\\Android\\PrintService.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAF4AAAAMAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-20T04:36:39.674Z",
-              "EditorCaption": ""
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "Orientation": 0,
-      "VerticalTabListWidth": 256,
-      "FloatingWindowState": {
-        "Id": "3ab34d7e-306e-4e38-8260-e6efd40a71ed",
-        "Display": 2,
-        "X": -32,
-        "Y": 87,
-        "Width": 1261,
-        "Height": 970,
-        "WindowState": 2
-      },
-      "DocumentGroups": [
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 0,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "PrinterModel.cs",
-              "DocumentMoniker": "C:\\Users\\TEFA\\Desktop\\new App\\Android App\\pos-android-app-main\\App\\Services\\PrinterServices\\OrderPrinter\\PrinterModel.cs",
-              "RelativeDocumentMoniker": "App\\Services\\PrinterServices\\OrderPrinter\\PrinterModel.cs",
-              "ToolTip": "C:\\Users\\TEFA\\Desktop\\new App\\Android App\\pos-android-app-main\\App\\Services\\PrinterServices\\OrderPrinter\\PrinterModel.cs",
-              "RelativeToolTip": "App\\Services\\PrinterServices\\OrderPrinter\\PrinterModel.cs",
-              "ViewState": "AQIAAAUAAAAAAAAAAAAxwBgAAAAbAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-21T01:28:28.406Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "App.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\TEFA\\Desktop\\new App\\Android App\\pos-android-app-main\\App\\App.xaml.cs",
-              "RelativeDocumentMoniker": "App\\App.xaml.cs",
-              "ToolTip": "C:\\Users\\TEFA\\Desktop\\new App\\Android App\\pos-android-app-main\\App\\App.xaml.cs",
-              "RelativeToolTip": "App\\App.xaml.cs",
-              "ViewState": "AQIAABQAAAAAAAAAAAAwwCUAAAAmAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-20T23:40:23.579Z",
+              "WhenOpened": "2024-06-26T23:02:34.573Z",
               "EditorCaption": ""
             }
           ]

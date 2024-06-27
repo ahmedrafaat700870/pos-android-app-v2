@@ -18,6 +18,7 @@
             decimal qty = scale.wight;
             var inventoryOrder = new InventoryOrderitem()
             {
+                name = prodcut.name,
                 Quantity = qty,
                 Subtotal = prodcut.subtotal,
                 Total = prodcut.price_with_tax,
@@ -28,7 +29,11 @@
                 original_price = price,
                 _product_api = prodcut
             };
-            HelperTaxIncluded.AddPriceToOrderItem(price, inventoryOrder);
+            inventoryOrder.Percentage_Taxes = HerlperInventroyOrderItem.GetPercentageTaxces(prodcut.id);
+            inventoryOrder.Subtotal = price / (inventoryOrder.Percentage_Taxes + 100) * 100;
+            inventoryOrder.Total = price;
+            inventoryOrder.TaxTotal = inventoryOrder.Total - inventoryOrder.Subtotal;
+            inventoryOrder.original_price = price;
             OrderHeloper.AddOrderItemToOrder(inventoryOrder, qty);
             return true;
         }
@@ -91,7 +96,7 @@
             decimal dCode = 0;
             decimal.TryParse(code.ToString(), out dCode);
             decimal c = 0;
-            decimal.TryParse((dCode / P).ToString(), out c);
+            decimal.TryParse((dCode / P).ToString(), out c);    
             return c;
         }
 

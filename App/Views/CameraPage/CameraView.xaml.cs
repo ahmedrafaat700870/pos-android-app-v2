@@ -12,6 +12,12 @@ public partial class _CameraView : ContentView
         BindingContext = vmLang;
     }
 
+
+    public void Set_SetBarcodeAction(Action<string> setBarcode)
+    {
+        this.setBarcode = setBarcode;
+    }
+
     public void LoadLang()
     {
         vmLang = HerlperSettings.GetLang().CameraViewLang.GetLang();
@@ -63,13 +69,6 @@ public partial class _CameraView : ContentView
             await cameraView.StopCameraAsync();
         });
     }
-
-
-
-
-
-
-
 
 
     private void cameraView_BarcodeDetected(object sender, Camera.MAUI.ZXingHelper.BarcodeEventArgs args)

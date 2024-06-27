@@ -19,6 +19,7 @@
             decimal priceOrQty = scale.priceOrWeight;
             var inventoryOrder = new InventoryOrderitem()
             {
+                name = prodcut.name,
                 Quantity = 0,
                 Subtotal = prodcut.subtotal,
                 Total = prodcut.price_with_tax,
@@ -28,9 +29,16 @@
                 Add_Date = DateTime.Now,
                 _product_api = prodcut
             };
+            inventoryOrder.Percentage_Taxes = HerlperInventroyOrderItem.GetPercentageTaxces(prodcut.id);
             if (s.isPrice)
             {
-                HelperTaxIncluded.AddPriceToOrderItem(priceOrQty, inventoryOrder);
+             /*   HelperTaxIncluded.AddPriceToOrderItem(priceOrQty, inventoryOrder);
+                OrderHeloper.AddOrderItemToOrder(inventoryOrder);
+                inventoryOrder.original_price = priceOrQty;*/
+
+                inventoryOrder.Subtotal = priceOrQty / (inventoryOrder.Percentage_Taxes + 100) * 100;
+                inventoryOrder.Total = priceOrQty;
+                inventoryOrder.TaxTotal = inventoryOrder.Total - inventoryOrder.Subtotal;
                 OrderHeloper.AddOrderItemToOrder(inventoryOrder);
                 inventoryOrder.original_price = priceOrQty;
             }
@@ -38,6 +46,9 @@
             {
                 inventoryOrder.Quantity = priceOrQty;
                 inventoryOrder.original_price = prodcut.price;
+                inventoryOrder.Total = prodcut.price;
+                inventoryOrder.Subtotal = inventoryOrder.Total / (inventoryOrder.Percentage_Taxes + 100) * 100;
+                inventoryOrder.TaxTotal = inventoryOrder.Total - inventoryOrder.Subtotal;
                 OrderHeloper.AddOrderItemToOrder(inventoryOrder, priceOrQty);
             }
             return true;
@@ -53,12 +64,18 @@
 
             int NumberOfPoint = App.scalesHelper.GetDecimalPoint();
 
-            decimal _priceOrWeigth =  CalcPice(ScaleCode , s.price , NumberOfPoint);
+            decimal _priceOrWeigth;
 
             if (s.isPrice)
+            {
+                _priceOrWeigth = CalcPice(ScaleCode, s.price, NumberOfPoint);
                 ten = GetPower(s.price);
+            }
             else
+            {
+                _priceOrWeigth = CalcPice(ScaleCode, s.weigth, NumberOfPoint);
                 ten = GetPower(s.weigth);
+            }
 
             ScaleCode /= ten;
 

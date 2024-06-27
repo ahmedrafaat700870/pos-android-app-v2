@@ -1,6 +1,4 @@
 ﻿
-using System.Data;
-
 namespace App.Model
 {
     public class UserPrivData
@@ -38,9 +36,7 @@ namespace App.Model
 
             string content = GetFileWriteerAndReader().ReadTextFile(dataUser);
             DataUser = JsonConvert.DeserializeObject<UserPrivData>(content);
-
-
-
+            
         }
 
         public bool isContainsDataUser()
@@ -64,6 +60,12 @@ namespace App.Model
             DataUser = new UserPrivData();
             SaveData();
         }
+
+        public void DropFile()
+        {
+            App.GetReadAndWriteFile().DeleteFile(dataUser);
+        }
+
 
     }
 }
