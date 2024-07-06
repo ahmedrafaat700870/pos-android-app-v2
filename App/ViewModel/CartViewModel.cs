@@ -102,8 +102,15 @@ namespace App.ViewModel
         {
             App.order.PaymentsPaymentamounts.Add(payment);
             ChangeIndicatorStatus();
-            await _printer.PrintAsync(App.order);
-            await App.postOrder.PostOrder();
+            App.order.OrderDate = DateTime.Now;
+            bool isSuccess = await App.postOrder.PostOrderV2();
+
+            if (isSuccess)
+            {
+                await _printer.PrintAsync(App.order);
+                App.postOrder.RessetOrder();
+            }
+
             ChangeIndicatorStatus();
         }
 

@@ -37,11 +37,13 @@
             OrderHeloper.AddOrderItemToOrder(inventoryOrder, qty);
             return true;
         }
+
         /*
          
          2 5 5 5 1
          22 11111 20000 100000 1
          */
+
         private void setScale(long ScaleCode)
         {
             s = App.scalesHelper.GetScaleSettings();
@@ -52,13 +54,15 @@
 
             int NumberOfPointWeigth = App.scalesHelper.GetDecimalPointWeight();
 
-            decimal wight = GetPriceOrWight(ScaleCode, s.weigth, NumberOfPointWeigth);
+            string _s = ScaleCode.ToString();
+            decimal wight = GetPriceOrWightV2(_s, s.weigth, NumberOfPointWeigth);
 
             ten = GetPower(s.weigth);
             ScaleCode /= ten;
 
+            _s = ScaleCode.ToString();
             int NumberOfPointPrice = App.scalesHelper.GetDecimalPoint();
-            decimal price = GetPriceOrWight(ScaleCode, s.price, NumberOfPointPrice);
+            decimal price = GetPriceOrWightV2(_s, s.price, NumberOfPointPrice);
 
             ten = GetPower(s.price);
             ScaleCode /= ten;
@@ -98,6 +102,22 @@
             decimal c = 0;
             decimal.TryParse((dCode / P).ToString(), out c);    
             return c;
+
+
+
+
+        }
+
+        private decimal GetPriceOrWightV2(string code, int priceOrWigth, int n)
+        {
+            // save code 21111110000002000 , priceOrWight = 5 , n = 2 
+
+            string codePriveOrWight = code.Substring(code.Length - priceOrWigth); // => 02000
+            string decimalBlaces = codePriveOrWight.Substring(codePriveOrWight.Length - (priceOrWigth - n));
+            string pw = codePriveOrWight.Substring(0 , n);
+            decimal _pw;
+            decimal.TryParse($"{pw}.{decimalBlaces}" , out _pw);
+            return _pw;
         }
 
 

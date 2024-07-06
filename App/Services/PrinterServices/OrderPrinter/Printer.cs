@@ -1,5 +1,4 @@
-﻿
-using XamarinESCUtils.Model;
+﻿using XamarinESCUtils.Model;
 using XamarinESCUtils.Platforms.Common;
 
 namespace App.Services.PrinterServices.OrderPrinter
@@ -36,7 +35,7 @@ namespace App.Services.PrinterServices.OrderPrinter
         private void DrowHeader(PrinterModel model)
         {
             InitPrinter();
-            _blueToothService.SendData(Encoding.ASCII.GetBytes("\x1D\x21\x13"));
+            _blueToothService.SendData(Encoding.ASCII.GetBytes("\x1D\x21\x21"));
             //_blueToothService.SendData(_ecUtil.BoldOn());
             SimpleNextLine(2);
             DrowLine();
@@ -49,24 +48,35 @@ namespace App.Services.PrinterServices.OrderPrinter
             DrowHeaderItem("time :", model.OrderTime.ToShortTimeString());
            
             DrowHeaderItem("casher :", model.CasherName);
-           /* SimpleNextLine(1);
-            DrowHeaderItem("brunch :", model.PrunchName);*/
+            if(!string.IsNullOrEmpty(model.clientName))
+                DrowHeaderItem("client :" , model.clientName );
+           /* 
+            SimpleNextLine(1);
+            DrowHeaderItem("brunch :", model.PrunchName);
+           */
         }
 
         private void DrowBody(PrinterModel model)
         {
             DrowLine();
             DrowHeaderItem("invoice");
+            DrowLine();
+            string itemName = GetItemAfterAddingSpace("name", 8);
+
+            string price = GetItemAfterAddingSpace("unit", 4);
+
+            string qty = GetItemAfterAddingSpace("qty", 3);
+
+            string total = GetItemAfterAddingSpace("price", 5);
+
+            _blueToothService.SendData(Encoding.ASCII.GetBytes($"| {itemName} | {price} | {qty} | {total} |"));
             foreach (var item in model.Items)
             {
                 DrowLine();
                 
                 DrowBodyItem(item);
                 if(item.discount is not null && item.discount.DiscountAmount > 0)
-                {
-                    
-                    DrowHeaderItem(item.discount.DiscountType, item.discount.DiscountAmount.ToString());
-                }
+                    DrowHeaderItem(item.discount.DiscountType, item.discount.DiscountAmount.ToString("0.00"));
             }
 
         }
@@ -74,14 +84,21 @@ namespace App.Services.PrinterServices.OrderPrinter
         private void DrowFooter(PrinterModel model)
         {
             DrowLine();
-            DrowHeaderItem("total :", model.total.ToString());
+            DrowHeaderItem("total :", model.total.ToString("0.00"));
             
-            DrowHeaderItem("subtotal :", model.subTotal.ToString());
+            DrowHeaderItem("subtotal :", model.subTotal.ToString("0.00"));
       
-            DrowHeaderItem("tax :", model.tax.ToString());
-      
-            DrowHeaderItem("total discount :", model.totalDiscount.ToString());
-          
+            DrowHeaderItem("tax :", model.tax.ToString("0.00"));
+            if(model.totalDiscount > 0)
+                DrowHeaderItem("total discount :", model.totalDiscount.ToString("0.00"));
+
+            DrowHeaderItem("taxs");
+            foreach (var t in model.taxs)
+                DrowHeaderItem($"{t.Key}", $"{t.Value.Amount.ToString("0.00")}");
+            DrowHeaderItem("payment");
+            foreach (var p in model.payments)
+                DrowHeaderItem($"{p.Value.Name}", $"{p.Value.Amount.ToString("0.00")}");
+
             DrowLine();
             SimpleNextLine(1);
             DrowQrCode(model.qrCode);
@@ -122,21 +139,21 @@ namespace App.Services.PrinterServices.OrderPrinter
         }
         private void DrowBodyItem(OrderItems item)
         {
-            string itemName = GetItemAfterAddingSpace(item.ItemName , 10);
+            string itemName = GetItemAfterAddingSpace(item.ItemName , 7);
             
-            string price = GetItemAfterAddingSpace(item.ItemPrice.ToString() , 4);
+            string price = GetItemAfterAddingSpace(item.ItemPrice.ToString("0.00") , 4);
 
-            string qty = GetItemAfterAddingSpace(item.qty.ToString() , 4);
+            string qty = GetItemAfterAddingSpace(item.qty.ToString("0.00") , 3);
 
-            string total = GetItemAfterAddingSpace(item.total.ToString() , 10);
+            string total = GetItemAfterAddingSpace(item.total.ToString("0.00") , 6);
 
-            _blueToothService.SendData(Encoding.ASCII.GetBytes($"|{itemName}|{price}|{qty}|{total}|")); // 33
+            _blueToothService.SendData(Encoding.ASCII.GetBytes($"| {itemName} | {price} | {qty} | {total}| ")); // 33
         }
         private void DrowHeaderItem(string l , string r)
         {
-            string left = GetItemAfterAddingSpace(l, 15); 
-            string right = GetItemAfterAddingSpace(r, 15);
-            _blueToothService.SendData(Encoding.ASCII.GetBytes($"|{left}|{right}|")); // 33
+            string left = GetItemAfterAddingSpace(l, 13); 
+            string right = GetItemAfterAddingSpace(r, 13);
+            _blueToothService.SendData(Encoding.ASCII.GetBytes($"| {left} | {right} |")); // 33
         }
         private void DrowHeaderItem(string i)
         {

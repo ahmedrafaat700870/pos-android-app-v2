@@ -85,8 +85,11 @@ namespace App.ViewModel
                        App.order.PaymentsPaymentamounts = orderPayments;
                    }
                });
-            await _orderPrinter.PrintAsync(App.order);
-            await App.postOrder.PostOrder();
+            App.order.OrderDate = DateTime.Now;
+            bool isSuccess = await App.postOrder.PostOrderV2();
+            if (isSuccess)
+                await _orderPrinter.PrintAsync(App.order);
+            App.postOrder.RessetOrder();
         }
 
 

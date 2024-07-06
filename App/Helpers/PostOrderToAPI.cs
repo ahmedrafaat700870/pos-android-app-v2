@@ -14,14 +14,35 @@
 
             if (status == 0) // success send order.
             {
-                App.order = new InventoryOrder();
-                OrderHeloper.CalcOrderItemCountInOrder();
                 Success(string.Empty);
             } else
             {
                 App.order.PaymentsPaymentamounts = null!;
                 var lang = HerlperSettings.GetLang().ToastLang.GetLang();
                 Error(lang.PostOrderfalid);
+            }
+        }
+
+        public void RessetOrder()
+        {
+            App.order = new InventoryOrder();
+            OrderHeloper.CalcOrderItemCountInOrder();
+        }
+
+        public async Task<bool> PostOrderV2()
+        {
+            int status = await _postOrder.Send();
+
+            if (status == 0) // success send order.
+            {
+                Success(string.Empty);
+                return true;
+            }
+            else
+            {
+                var lang = HerlperSettings.GetLang().ToastLang.GetLang();
+                Error(lang.PostOrderfalid);
+                return false;
             }
         }
 
