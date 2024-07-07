@@ -132,6 +132,9 @@
             App.DataUserRemeberMe.ReomveLastUser();
             SetDefualtColor();
             LogoutColor = activeColor;
+            SecureStorage.Default.Remove(ConstantLogin.RememberMe);
+            SecureStorage.Default.Remove(ConstantLogin.UserName);
+            SecureStorage.Default.Remove(ConstantLogin.Password);
             Application.Current.Quit();
         }
 

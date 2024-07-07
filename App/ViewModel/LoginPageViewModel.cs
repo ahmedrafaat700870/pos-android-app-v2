@@ -38,13 +38,29 @@
             this.mainPage = mainPage;
             LoagLang();
             _applicationData = applicationData;
-            CheckFromLastUserRemeberMe();
+            //CheckFromLastUserRemeberMe();
+
+            CheckFromUserRemeberMeV2();
+
+
         }
 
 
         private void ReomveDataUser()
         {
             App.DataUserRemeberMe.ReomveLastUser();
+        }
+
+        private async void CheckFromUserRemeberMeV2()
+        {
+            var rememberMe = await SecureStorage.Default.GetAsync(ConstantLogin.RememberMe) ?? string.Empty; // Preferences.Default.Get<bool>(ConstantLogin.RememberMe, false);
+            if (!string.IsNullOrEmpty(rememberMe))
+            {
+                this.Username = await SecureStorage.Default.GetAsync(ConstantLogin.UserName) ?? string.Empty;
+                this.Password = await SecureStorage.Default.GetAsync(ConstantLogin.Password) ?? string.Empty;
+                this.IsRememberMeChecked = true;
+                Login();
+            }
         }
 
         private void CheckFromLastUserRemeberMe()
@@ -116,7 +132,18 @@
                     return;
                 }
 
-                UpdateDataLastUser();
+
+                if(this.IsRememberMeChecked)
+                {
+                    await SecureStorage.Default.SetAsync(ConstantLogin.RememberMe , ConstantLogin.RememberMe);
+                    await SecureStorage.Default.SetAsync(ConstantLogin.UserName , Username);
+                    await SecureStorage.Default.SetAsync(ConstantLogin.Password , Password);
+                }
+
+                //UpdateDataLastUser();
+
+
+
                 var user = await _loginServices.Login(Username, Password);
                 if (user is not null)
                 {
